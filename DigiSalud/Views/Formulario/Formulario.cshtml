@@ -1,10 +1,25 @@
-﻿@{
+﻿
+@model DigiSalud.Models.Cliente
+@{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 @{
+
     ViewBag.Title = "Index";
+    //string apellido = Session["Cliente"].ToString();
+    //    string primerNombre = Model.PrimerNombre;
+    string primerNombre;
+    if(Model != null)
+    {
+        primerNombre = Model.PrimerNombre;
+    }
+    else
+    {
+        primerNombre = "";
+    }
 }
 
-<h2>Index</h2>
+<h2>Algo</h2>
 <p>Hello from our View Template!</p>
+<label>A ver pues @primerNombre</label>

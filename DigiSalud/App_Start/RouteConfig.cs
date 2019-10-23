@@ -21,8 +21,8 @@ namespace DigiSalud
 
             routes.MapRoute(
                 name: "Formulario",
-                url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Formulario", action = "Index", id = UrlParameter.Optional }
+                url: "{controller}/{id}",
+                defaults: new { controller = "Formulario", action = "Formulario" }
             );
         }
     }

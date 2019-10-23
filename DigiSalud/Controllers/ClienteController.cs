@@ -22,9 +22,9 @@ namespace DigiSalud.Controllers
         }
 
         [HttpPost]
-        public ActionResult Regresar(Cliente cliente)
+        public void Regresar(Cliente cliente)
         {
-            return RedirectToRoute("Formulario");
+            Session["Cliente"] = cliente;
             //return View();
         }
     }

@@ -171,6 +171,7 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12">
+                        <button onclick="location.href='@Url.Action("Formulario", "Formulario")'">Al otro</button>
                         <input type="submit" value="Guardar"  id="submit"
                                class="btn btn-primary" />
                     </div>
@@ -224,6 +225,7 @@
 
         $('#cliente').submit(function (event) {
             mensaje.remove();
+            /*
             if ($('#numeroDocumento').val().length < 6) {
                 mensaje.warn('El número de documento debe' +
                     ' tener mínimo seis dígitos');
@@ -240,22 +242,27 @@
             $('#antecedentes option').each(function () {
                 $(this).prop("selected", true);
             });
-
+            */
             event.preventDefault();
             var formData = new FormData(this);
+            //var formData = "ajajaja";
+
             $.ajax({
                 type: "POST",
-                url: '/Cliente/Ingresar',
+                //dataType: "json",
+                url: "/Cliente/Regresar",
                 data: formData,
                 processData: false,
                 contentType: false,
                 success: function (response) {
                     mensaje.inform("Cliente almacenado correctamente.");
+                   location.href = '@Url.Action("Formulario", "Formulario")';
                 },
                 error: function (xhr, ajaxOptions, thrownError) {
                     mensaje.warn("Error al almacenar el cliente.");
                 }
             });
+            
         });
 
         function validarFechaNacimiento(fecha) {
