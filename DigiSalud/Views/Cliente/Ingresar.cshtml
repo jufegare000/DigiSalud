@@ -1,0 +1,274 @@
+﻿@model DigiSalud.Models.Cliente
+@{
+
+    ViewBag.Title = "Ingresar";
+    var tiposDocumento = new List<SelectListItem>();
+            tiposDocumento.Add(new SelectListItem()
+            {
+                Text = "Cédula de Ciudadanía",
+                Value = "1"
+            });
+            tiposDocumento.Add(new SelectListItem()
+            {
+                Text = "Tarjeta de Identidad",
+                Value = "2"
+            });
+            tiposDocumento.Add(new SelectListItem()
+            {
+                Text = "Tarjeta de Extranjería",
+                Value = "3"
+            });
+    ViewBag.TiposDocumento = tiposDocumento;
+}
+
+<br />
+<form action="/Cliente/Ingresar" autocomplete="on" method="post" id="cliente" name="cliente">
+    <div class="container">
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                Datos del Cliente
+            </div>
+            <div class="card-body">
+                <div id="mensaje"></div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label for="primerNombre">Primer nombre</label>
+                            @Html.TextBoxFor(c => c.PrimerNombre,
+                            new
+                              {
+                                  @class = "form-control",
+                                  @placeholder = "Primer Nombre",
+                                  @maxlength = "100",
+                                  @required = "required"
+                              })
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label for="segundoNombre">Segundo nombre</label>
+                            <input type="text" class="form-control" id="segundoNombre"
+                                   name="segundoNombre"
+                                   placeholder="Segundo nombre">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label for="primerNombre">Primer apellido</label>
+                            <input type="text" class="form-control" id="primerApellido"
+                                   name="primerApellido" required
+                                   placeholder="Primer apellido">
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label for="segundoNombre">Segundo apellido</label>
+                            <input type="text" class="form-control" id="segundoApellido"
+                                   name="segundoApellido"
+                                   placeholder="Segundo apellido">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="tipoDocumento">Tipo de documento</label>
+                            <select class="form-control" id="tipoDocumento" name="tipoDocumento">
+                                <option></option>
+                                @foreach (SelectListItem tipoDocumento in ViewBag.TiposDocumento)
+                                {
+                                    <option value="@tipoDocumento.Value">@tipoDocumento.Text</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="numeroDocumento">Número de documento</label>
+                            <input type="text" required class="form-control numero" id="numeroDocumento"
+                                   name="numeroDocumento"
+                                   placeholder="Número de documento">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label for="fechaNacimiento">Fecha de nacimiento</label>
+                            <div class="input-append date" id="datepicker"
+                                 data-date-format="dd/mm/yyyy">
+                                <input class="form-control" required
+                                       id="fechaNacimiento"
+                                       name="fechaNacimiento">
+                                <span class="add-on"><i class="icon-th"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label">Sexo</label>
+                            <div class="form-group">
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" id="sexoMasculino" name="sexo" class="custom-control-input" value="M">
+                                    <label class="custom-control-label" for="sexoMasculino">Masculino</label>
+                                </div>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" id="sexoFemenino" name="sexo" class="custom-control-input" value="F">
+                                    <label class="custom-control-label" for="sexoFemenino">Femenino</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label">Cotizante</label>
+                            <div class="form-check">
+                                <label class="form-check-label" for="cotizante">&nbsp;</label>
+                                <input type="checkbox" class="form-check-input" id="cotizante" name="cotizante" value="true">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-5">
+                        <div class="form-group">
+                            <label for="tipoDocumento">Antecedentes</label>
+                            <select multiple size="10" class="form-control" id="antecedentesIniciales" name="antecedentesIniciales">
+                                <option value="1">Hipertensión</option>
+                                <option value="2">Aneurisma</option>
+                                <option value="3">ACV</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <input type="button" value="->" id="adicionar" class="form-control" /><br />
+                        <input type="button" value="<-" id="remover" class="form-control" />
+                    </div>
+                    <div class="col-md-5">
+                        <div class="form-group">
+                            <label for="tipoDocumento">Antecedentes Seleccionados</label>
+                            <select multiple size="10" id="antecedentes" name="antecedentes" class="form-control"></select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="segundoNombre">Observaciones</label>
+                            <textarea class="form-control" id="observaciones"
+                                      name="observaciones" rows="10" cols="10"
+                                      placeholder="Observaciones"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <input type="submit" value="Guardar"  id="submit"
+                               class="btn btn-primary" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        $('#datepicker').datepicker(
+            {
+                format: 'dd/mm/yyyy',
+                language: 'es',
+                autoclose: true
+            }
+        );
+
+        $('.numero').keyup(function () {
+            this.value = this.value.replace(/[^0-9]/g, '');
+        });
+
+        mensaje = {};
+        mensaje.warn = function (texto) {
+            $('#mensaje').
+                html('<div class="alert alert-danger">' +
+                    '<a class="close" data-dismiss="alert">x</a><span>'
+                    + texto + '</span></div>');
+        };
+        mensaje.inform = function (texto) {
+            $('#mensaje').
+                html('<div class="alert alert-primary">' +
+                    '<a class="close" data-dismiss="alert">x</a><span>'
+                    + texto + '</span></div>');
+        };
+        mensaje.remove = function () {
+            $('#mensaje').html('');
+        };
+
+        $('#adicionar').click(function () {
+            $('#antecedentesIniciales option:selected').each(function () {
+                $('#antecedentes').append("<option value='" + $(this).val() + "'>" + $(this).text() + "</option>");
+                $(this).remove();
+            });
+        });
+
+        $('#remover').click(function () {
+            $('#antecedentes option:selected').each(function () {
+                $('#antecedentesIniciales').append("<option value='" + $(this).val() + "'>" + $(this).text() + "</option>");
+                $(this).remove();
+            });
+        });
+
+        $('#cliente').submit(function (event) {
+            mensaje.remove();
+            if ($('#numeroDocumento').val().length < 6) {
+                mensaje.warn('El número de documento debe' +
+                    ' tener mínimo seis dígitos');
+                return false;
+            }
+            if (!validarFechaNacimiento($('#fechaNacimiento').val())) {
+                mensaje.warn('La fecha de nacimiento no es válida');
+                return false;
+            }
+            if (!$('#sexoMasculino:checked').val() && !$('#sexoFemenino:checked').val()) {
+                mensaje.warn('Debe seleccionar el sexo');
+                return false;
+            }
+            $('#antecedentes option').each(function () {
+                $(this).prop("selected", true);
+            });
+
+            event.preventDefault();
+            var formData = new FormData(this);
+            $.ajax({
+                type: "POST",
+                url: '/Cliente/Ingresar',
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function (response) {
+                    mensaje.inform("Cliente almacenado correctamente.");
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    mensaje.warn("Error al almacenar el cliente.");
+                }
+            });
+        });
+
+        function validarFechaNacimiento(fecha) {
+            if (fecha === "") return false;
+            var fechas = fecha.split("/");
+            var nuevaFecha = new Date(parseInt(fechas[2], 10),
+                parseInt(fechas[1], 10) - 1,
+                parseInt(fechas[0], 10));
+            if (nuevaFecha > new Date()) {
+                return false;
+            } else {
+                return true;
+            }
+        }
+    </script>
+</form>
