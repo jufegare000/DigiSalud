@@ -22,11 +22,5 @@ namespace DigiSalud.Controllers
                 return View();
             }
         }
-
-        [HttpPost]
-        public ActionResult Formulario(Cliente cliente)
-        {
-            return View();
-        }
     }
 }

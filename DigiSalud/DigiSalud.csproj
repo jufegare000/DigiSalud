@@ -121,12 +121,14 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\ClienteController.cs" />
+    <Compile Include="Controllers\DetalleController.cs" />
     <Compile Include="Controllers\FormularioController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Cliente.cs" />
+    <Compile Include="Models\Encuesta.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -286,6 +288,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Cliente\Ingresar.cshtml" />
     <Content Include="Views\Formulario\Formulario.cshtml" />
+    <Content Include="Views\Detalle\Detalle.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

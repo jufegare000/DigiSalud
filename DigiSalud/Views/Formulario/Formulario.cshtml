@@ -10,16 +10,19 @@
     //string apellido = Session["Cliente"].ToString();
     //    string primerNombre = Model.PrimerNombre;
     string primerNombre;
+    string numeroIdentificacion;
     if(Model != null)
     {
         primerNombre = Model.PrimerNombre;
+        numeroIdentificacion = Model.NumeroDocumento.ToString();
     }
     else
     {
         primerNombre = "";
+        numeroIdentificacion = "";
     }
 }
 
 <h2>Algo</h2>
 <p>Hello from our View Template!</p>
-<label>A ver pues @primerNombre</label>
+<label>A ver pues @primerNombre,  @numeroIdentificacion</label>
