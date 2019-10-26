@@ -1,503 +1,658 @@
 ﻿@model DigiSalud.Models.Encuesta
+@{
 
-@using (Html.BeginForm()) 
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>Encuesta</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.FormatoEnPapel, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.FormatoEnPapel)
-                    @Html.ValidationMessageFor(model => model.FormatoEnPapel, "", new { @class = "text-danger" })
+    ViewBag.Title = "Ingresar";
+    ViewBag.Encabezado = " Evaluación de un programa de tecnologías de la información" +
+        "y comunicación en salud mental pra los estudiantes de la facultad de medicina";
+    ViewBag.Pregunta1 = "¿Diligenció el formato de consentimiento en papel?";
+    ViewBag.Pregunta2 = "¿Está de acuerdo con el siguiente estudio?";
+    ViewBag.Pregunta3 = "Durante su carrera, ¿ha sufrido retraso académico?";
+    ViewBag.Pregunta4 = "En caso afirmativo ¿cuantos semestres se ha atrasado?";
+    var tiempoDetratamiento = new List<SelectListItem>();
+    tiempoDetratamiento.Add(new SelectListItem()
+    {
+        Text = "Nignuno",
+        Value = "1"
+    });
+    tiempoDetratamiento.Add(new SelectListItem()
+    {
+        Text = "0 a 2",
+        Value = "2"
+    });
+    tiempoDetratamiento.Add(new SelectListItem()
+    {
+        Text = "2 a 5",
+        Value = "3"
+    });
+    tiempoDetratamiento.Add(new SelectListItem()
+    {
+        Text = "Más de 5",
+        Value = "4"
+    });
+    ViewBag.TiempoDetratamiento = tiempoDetratamiento;
+    ViewBag.Parrafo = "A continuación, encontrárá preguntas acerca del uso de internet y el tiempo que se gasta en línea, " +
+                "esto nos permitirá determinar las preferencias y portunidades que tienen las" +
+                " personas en este ámbito. Por favor asegúrese de leer cuidadosamente las preguntas," +
+                " en algunas de ellas se podrá seleccionar varias opciones y otras le solicitarás que se" +
+                " detenga y termine el cuestionario. Si tiene cualquier duda solicite toda la colaboración que necesite.";
+}
+
+<br />
+<form action="/Encuesta/Encuesta" autocomplete="on" method="post" id="emcuesta" name="emcuesta">
+    <div class="container">
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                @ViewBag.Encabezado
+            </div>
+            <div class="card-body">
+                <div id="mensaje"></div>
+                <h3 style="text-align:center">Consentimiento informado</h3>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+
+                            <label for="pregunta1">@ViewBag.Pregunta1</label>
+                            <br />
+                            @Html.RadioButtonFor(m => m.FormatoEnPapel, "Si")<label for="si1" style="margin-left:2em">Si</label>
+                            <br />
+                            @Html.RadioButtonFor(m => m.FormatoEnPapel, "No")<label for="No1" style="margin-left:2em">No</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label for="primerNombre">@ViewBag.Pregunta2</label>
+                            <br />
+                            @Html.RadioButtonFor(m => m.PartiCipa, "Si")<label for="si2" style="margin-left:2em">Si</label>
+
+                            <br />
+                            @Html.RadioButtonFor(m => m.PartiCipa, "No")<label for="No2" style="margin-left:2em">No</label>
+
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.PartiCipa, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.PartiCipa)
-                    @Html.ValidationMessageFor(model => model.PartiCipa, "", new { @class = "text-danger" })
+                <div class="row">
+                    <div class="col-md-12">
+                        <h3 style="text-align:center">Datos sociodemográficos</h3>
+                    </div>
                 </div>
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Edad, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Edad, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Edad, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Sexo, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.Sexo)
-                    @Html.ValidationMessageFor(model => model.Sexo, "", new { @class = "text-danger" })
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="edad">¿Cuantos años tiene?</label>
+                        @Html.TextBoxFor(c => c.Edad,
+                        new
+                          {
+                              @class = "form-control",
+                              @placeholder = "Edad",
+                              @maxlength = "100",
+                              @required = "required"
+                          })
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="numeroDocumento">¿Cual es su sexo?</label>
+                            <br />
+                            @Html.RadioButtonFor(m => m.Sexo, "Hombre") <label for="hombre" style="margin-left:2em">Hombre</label>
+                            <br />
+                            @Html.RadioButtonFor(m => m.Sexo, "Mujer") <label for="mujer" style="margin-left:2em">Mujer</label>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.CiudadOrigen, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.CiudadOrigen, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.CiudadOrigen, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.CiudadActual, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.CiudadActual, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.CiudadActual, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Retraso, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.Retraso)
-                    @Html.ValidationMessageFor(model => model.Retraso, "", new { @class = "text-danger" })
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label for="ciudadDeorigen">¿Cual es su ciudad de origen?</label>
+                            @Html.TextBoxFor(c => c.CiudadOrigen,
+                                 new
+                                   {
+                                       @class = "form-control",
+                                       @placeholder = "Ciudad de origen",
+                                       @maxlength = "100",
+                                       @required = "required"
+                                   })
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="ciudadDeorigen">¿En cual ciudad vive actualmente?</label>
+                            @Html.TextBoxFor(c => c.CiudadActual,
+                                 new
+                                   {
+                                       @class = "form-control",
+                                       @placeholder = "Ciudad de residencia",
+                                       @maxlength = "100",
+                                       @required = "required"
+                                   })
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.SemestresAtrasados, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.SemestresAtrasados, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.SemestresAtrasados, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Dificultades, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.Dificultades)
-                    @Html.ValidationMessageFor(model => model.Dificultades, "", new { @class = "text-danger" })
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label for="EstaAtrasado">Durante su carrera ¿ha sufrido retraso académico?</label>
+                            <br />
+                            @Html.RadioButtonFor(m => m.Retraso, "Si") <label for="si3" style="margin-left:2em">Si</label>
+                            <br />
+                            @Html.RadioButtonFor(m => m.Retraso, "No") <label for="no3" style="margin-left:2em">No</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="semestresAtrasados">En caso afirmativo ¿Cuántos semestres se ha atrasado?</label>
+                            @Html.TextBoxFor(c => c.SemestresAtrasados,
+                             new
+                               {
+                                   @class = "form-control",
+                                   @placeholder = "Semestres atrasados",
+                                   @maxlength = "100",
+                               })
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
+                <br />
+                <div class="row">
+                    <div class="col-md-6">
+                        <div style="margin-left: auto; margin-right: auto; text-align: center;">
+                            <label>
+                                Según su experiencia, ¿qué motivos pudieron
+                                relacionarse con los atrasos?
+                            </label>
+                            <br />
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.ProblemasEcon, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.ProblemasEcon)
-                    @Html.ValidationMessageFor(model => model.ProblemasEcon, "", new { @class = "text-danger" })
+                            @Html.CheckBoxFor(m => m.Dificultades) Dificultades académicas
+                            <br />
+                            @Html.CheckBoxFor(m => m.ProblemasEcon) Problemas económicos
+                            <br />
+                            @Html.CheckBoxFor(m => m.ProblemasSalud) Problemas de salud
+                            <br />
+                            @Html.CheckBoxFor(m => m.ProblemasSaludMen) Problemas de salud mental
+                            <br />
+                            @Html.CheckBoxFor(m => m.ProblemasFamil) Problemas familiares
+                            <br />
+                            @Html.CheckBoxFor(m => m.CalamidadDomes) Calamidad doméstica
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div style="margin-left: auto; margin-right: auto; text-align: center;">
+                            <label>
+                                ¿Qué porción de tiempo a la semana considera que invierte en las siguientes actividades? (debe sumar 100%)
+                            </label>
+                            <br />
+                            <table>
+                                <tr>
+                                    <th></th>
+                                    <th>0%</th>
+                                    <th>10%</th>
+                                    <th>30%</th>
+                                    <th>40%</th>
+                                    <th>50%</th>
+                                    <th>60%</th>
+                                    <th>70%</th>
+                                    <th>80%</th>
+                                    <th>90%</th>
+                                </tr>
+                                <tr>
+                                    <td>Estudio</td>
+                                    <td> @Html.RadioButtonFor(m => m.Estudio, 0)</td>
+                                    <td> @Html.RadioButtonFor(m => m.Estudio, 20)</td>
+                                    <td> @Html.RadioButtonFor(m => m.Estudio, 30)</td>
+                                    <td> @Html.RadioButtonFor(m => m.Estudio, 40)</td>
+                                    <td> @Html.RadioButtonFor(m => m.Estudio, 50)</td>
+                                    <td> @Html.RadioButtonFor(m => m.Estudio, 60)</td>
+                                    <td> @Html.RadioButtonFor(m => m.Estudio, 70)</td>
+                                    <td> @Html.RadioButtonFor(m => m.Estudio, 80)</td>
+                                    <td> @Html.RadioButtonFor(m => m.Estudio, 90)</td>
+                                </tr>
+                                <tr>
+                                    <td>Deporte</td>
+                                    <td> @Html.RadioButtonFor(m => m.Deporte, 0)</td>
+                                    <td> @Html.RadioButtonFor(m => m.Deporte, 20)</td>
+                                    <td> @Html.RadioButtonFor(m => m.Deporte, 30)</td>
+                                    <td> @Html.RadioButtonFor(m => m.Deporte, 40)</td>
+                                    <td> @Html.RadioButtonFor(m => m.Deporte, 50)</td>
+                                    <td> @Html.RadioButtonFor(m => m.Deporte, 60)</td>
+                                    <td> @Html.RadioButtonFor(m => m.Deporte, 70)</td>
+                                    <td> @Html.RadioButtonFor(m => m.Deporte, 80)</td>
+                                    <td> @Html.RadioButtonFor(m => m.Deporte, 90)</td>
+                                </tr>
+                                <tr>
+                                    <td>Actividades culturales</td>
+                                    <td> @Html.RadioButtonFor(m => m.Culturales, 0)</td>
+                                    <td> @Html.RadioButtonFor(m => m.Culturales, 20)</td>
+                                    <td> @Html.RadioButtonFor(m => m.Culturales, 30)</td>
+                                    <td> @Html.RadioButtonFor(m => m.Culturales, 40)</td>
+                                    <td> @Html.RadioButtonFor(m => m.Culturales, 50)</td>
+                                    <td> @Html.RadioButtonFor(m => m.Culturales, 60)</td>
+                                    <td> @Html.RadioButtonFor(m => m.Culturales, 70)</td>
+                                    <td> @Html.RadioButtonFor(m => m.Culturales, 80)</td>
+                                    <td> @Html.RadioButtonFor(m => m.Culturales, 90)</td>
+                                </tr>
+                                <tr>
+                                    <td>Entretenimiento</td>
+                                    <td> @Html.RadioButtonFor(m => m.Entretenimiento, 0)</td>
+                                    <td> @Html.RadioButtonFor(m => m.Entretenimiento, 20)</td>
+                                    <td> @Html.RadioButtonFor(m => m.Entretenimiento, 30)</td>
+                                    <td> @Html.RadioButtonFor(m => m.Entretenimiento, 40)</td>
+                                    <td> @Html.RadioButtonFor(m => m.Entretenimiento, 50)</td>
+                                    <td> @Html.RadioButtonFor(m => m.Entretenimiento, 60)</td>
+                                    <td> @Html.RadioButtonFor(m => m.Entretenimiento, 70)</td>
+                                    <td> @Html.RadioButtonFor(m => m.Entretenimiento, 80)</td>
+                                    <td> @Html.RadioButtonFor(m => m.Entretenimiento, 90)</td>
+                                </tr>
+                                <tr>
+                                    <td>Trabajo</td>
+                                    <td> @Html.RadioButtonFor(m => m.Trabajo, 0)</td>
+                                    <td> @Html.RadioButtonFor(m => m.Trabajo, 20)</td>
+                                    <td> @Html.RadioButtonFor(m => m.Trabajo, 30)</td>
+                                    <td> @Html.RadioButtonFor(m => m.Trabajo, 40)</td>
+                                    <td> @Html.RadioButtonFor(m => m.Trabajo, 50)</td>
+                                    <td> @Html.RadioButtonFor(m => m.Trabajo, 60)</td>
+                                    <td> @Html.RadioButtonFor(m => m.Trabajo, 70)</td>
+                                    <td> @Html.RadioButtonFor(m => m.Trabajo, 80)</td>
+                                    <td> @Html.RadioButtonFor(m => m.Trabajo, 90)</td>
+                                </tr>
+                                <tr>
+                                    <td>Actividades religiosas</td>
+                                    <td> @Html.RadioButtonFor(m => m.Trabajo, 0)</td>
+                                    <td> @Html.RadioButtonFor(m => m.Trabajo, 20)</td>
+                                    <td> @Html.RadioButtonFor(m => m.Trabajo, 30)</td>
+                                    <td> @Html.RadioButtonFor(m => m.Trabajo, 40)</td>
+                                    <td> @Html.RadioButtonFor(m => m.Trabajo, 50)</td>
+                                    <td> @Html.RadioButtonFor(m => m.Trabajo, 60)</td>
+                                    <td> @Html.RadioButtonFor(m => m.Trabajo, 70)</td>
+                                    <td> @Html.RadioButtonFor(m => m.Trabajo, 80)</td>
+                                    <td> @Html.RadioButtonFor(m => m.Trabajo, 90)</td>
+                                </tr>
+                                <tr>
+                                    <td>Otras</td>
+                                    <td> @Html.RadioButtonFor(m => m.Otras, 0)</td>
+                                    <td> @Html.RadioButtonFor(m => m.Otras, 20)</td>
+                                    <td> @Html.RadioButtonFor(m => m.Otras, 30)</td>
+                                    <td> @Html.RadioButtonFor(m => m.Otras, 40)</td>
+                                    <td> @Html.RadioButtonFor(m => m.Otras, 50)</td>
+                                    <td> @Html.RadioButtonFor(m => m.Otras, 60)</td>
+                                    <td> @Html.RadioButtonFor(m => m.Otras, 70)</td>
+                                    <td> @Html.RadioButtonFor(m => m.Otras, 80)</td>
+                                    <td> @Html.RadioButtonFor(m => m.Otras, 90)</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.ProblemasSalud, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.ProblemasSalud)
-                    @Html.ValidationMessageFor(model => model.ProblemasSalud, "", new { @class = "text-danger" })
+                <br />
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label for="EstaAtrasado">¿Ha sufrido alguna condición médica (enfermedad, traumatismo, etc.)?</label>
+                            <br />
+                            @Html.RadioButtonFor(m => m.CondicionMedica, "Si") <label for="si4" style="margin-left:2em">Si</label>
+                            <br />
+                            @Html.RadioButtonFor(m => m.CondicionMedica, "No") <label for="no4" style="margin-left:2em">No</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="semestresAtrasados">Si respondió "Si" por favor especifique los diagnósticos, los años y si se encuentra en tratamiento. </label>
+                            @Html.TextAreaFor(c => c.CondicionMedicaDet,
+                                new
+                                    {
+                                        @class = "form-control",
+                                        @placeholder = "Detalle condición médica",
+                                    })
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="expe">Por favor especifique si sus familiares tienen alguno de los siguientes diagnósticos, tiempo y si se encuentra en tratamiento    </label>
+                            <table>
+                                <tr>
+                                    <th></th>
+                                    <th style="font-size:small">¿Padece enfermedad mental?</th>
+                                    <th style="font-size:small">Depresión  -</th>
+                                    <th style="font-size:small">Ansiedad   -</th>
+                                    <th style="font-size:small">Esquizofrenia o psicosis</th>
+                                    <th style="font-size:small">Consumo de licor o drogas</th>
+                                    <th style="font-size:small">Otra enfermedad mental</th>
+                                    <th style="font-size:small">Tiempo en diagnóstico</th>
+                                    <th style="font-size:small">¿Está en tratamiento?</th>
+                                </tr>
+                                <tr>
+                                    <td>Madre</td>
+                                    <td> @Html.CheckBoxFor(m => m.MadreEnfMen)</td>
+                                    <td> @Html.CheckBoxFor(m => m.MadreDep)</td>
+                                    <td> @Html.CheckBoxFor(m => m.MadreAns)</td>
+                                    <td> @Html.CheckBoxFor(m => m.MadreEsq)</td>
+                                    <td> @Html.CheckBoxFor(m => m.MadreLicDrog)</td>
+                                    <td> @Html.CheckBoxFor(m => m.MadreOtra)</td>
+                                    <td> @Html.DropDownListFor(m => m.MadreTiempoD, new SelectList(ViewBag.TiempoDetratamiento, "Value", "Text"))</td>
+                                    <td> @Html.CheckBoxFor(m => m.MadreTrat)</td>
+                                </tr>
+                                <tr>
+                                    <td>Padre</td>
+                                    <td> @Html.CheckBoxFor(m => m.PadreEnfMen)</td>
+                                    <td> @Html.CheckBoxFor(m => m.PadreDep)</td>
+                                    <td> @Html.CheckBoxFor(m => m.PadreAns)</td>
+                                    <td> @Html.CheckBoxFor(m => m.PadreEsq)</td>
+                                    <td> @Html.CheckBoxFor(m => m.PadreLicDrog)</td>
+                                    <td> @Html.CheckBoxFor(m => m.PadreOtra)</td>
+                                    <td> @Html.DropDownListFor(m => m.PadreTiempoD, new SelectList(ViewBag.TiempoDetratamiento, "Value", "Text"))</td>
+                                    <td> @Html.CheckBoxFor(m => m.MadreTrat)</td>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.ProblemasSaludMen, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.ProblemasSaludMen)
-                    @Html.ValidationMessageFor(model => model.ProblemasSaludMen, "", new { @class = "text-danger" })
+                                </tr>
+                                <tr>
+                                    <td>Hermano(a)</td>
+                                    <td> @Html.CheckBoxFor(m => m.HermanoEnfMen)</td>
+                                    <td> @Html.CheckBoxFor(m => m.HermanoDep)</td>
+                                    <td> @Html.CheckBoxFor(m => m.HermanoAns)</td>
+                                    <td> @Html.CheckBoxFor(m => m.HermanoEsq)</td>
+                                    <td> @Html.CheckBoxFor(m => m.HermanoLicDrog)</td>
+                                    <td> @Html.CheckBoxFor(m => m.HermanoOtra)</td>
+                                    <td> @Html.DropDownListFor(m => m.HermanoTiempoD, new SelectList(ViewBag.TiempoDetratamiento, "Value", "Text"))</td>
+                                    <td> @Html.CheckBoxFor(m => m.MadreTrat)</td>
+                                </tr>
+                                <tr>
+                                    <td>Pareja o <br />Esposo(a)</td>
+                                    <td> @Html.CheckBoxFor(m => m.ParejaEnfMen)</td>
+                                    <td> @Html.CheckBoxFor(m => m.ParejaDep)</td>
+                                    <td> @Html.CheckBoxFor(m => m.ParejaAns)</td>
+                                    <td> @Html.CheckBoxFor(m => m.ParejaEsq)</td>
+                                    <td> @Html.CheckBoxFor(m => m.ParejaLicDrog)</td>
+                                    <td> @Html.CheckBoxFor(m => m.ParejaOtra)</td>
+                                    <td> @Html.DropDownListFor(m => m.ParejaTiempoD, new SelectList(ViewBag.TiempoDetratamiento, "Value", "Text"))</td>
+                                    <td> @Html.CheckBoxFor(m => m.MadreTrat)</td>
+                                </tr>
+                                <tr>
+                                    <td>Abuelo(a)</td>
+                                    <td> @Html.CheckBoxFor(m => m.AbueloEnfMen)</td>
+                                    <td> @Html.CheckBoxFor(m => m.AbueloDep)</td>
+                                    <td> @Html.CheckBoxFor(m => m.AbueloAns)</td>
+                                    <td> @Html.CheckBoxFor(m => m.AbueloEsq)</td>
+                                    <td> @Html.CheckBoxFor(m => m.AbueloLicDrog)</td>
+                                    <td> @Html.CheckBoxFor(m => m.AbueloOtra)</td>
+                                    <td> @Html.DropDownListFor(m => m.AbueloTiempoD, new SelectList(ViewBag.TiempoDetratamiento, "Value", "Text"))</td>
+                                    <td> @Html.CheckBoxFor(m => m.MadreTrat)</td>
+                                </tr>
+                                <tr>
+                                    <td>Primo(a)</td>
+                                    <td> @Html.CheckBoxFor(m => m.PrimoEnfMen)</td>
+                                    <td> @Html.CheckBoxFor(m => m.PrimoDep)</td>
+                                    <td> @Html.CheckBoxFor(m => m.PrimoAns)</td>
+                                    <td> @Html.CheckBoxFor(m => m.PrimoEsq)</td>
+                                    <td> @Html.CheckBoxFor(m => m.PrimoLicDrog)</td>
+                                    <td> @Html.CheckBoxFor(m => m.PrimoOtra)</td>
+                                    <td> @Html.DropDownListFor(m => m.PrimoTiempoD, new SelectList(ViewBag.TiempoDetratamiento, "Value", "Text"))</td>
+                                    <td> @Html.CheckBoxFor(m => m.MadreTrat)</td>
+                                </tr>
+                                <tr>
+                                    <td>Sobrino(a)</td>
+                                    <td> @Html.CheckBoxFor(m => m.SobrinoEnfMen)</td>
+                                    <td> @Html.CheckBoxFor(m => m.SobrinoDep)</td>
+                                    <td> @Html.CheckBoxFor(m => m.SobrinoAns)</td>
+                                    <td> @Html.CheckBoxFor(m => m.SobrinoEsq)</td>
+                                    <td> @Html.CheckBoxFor(m => m.SobrinoLicDrog)</td>
+                                    <td> @Html.CheckBoxFor(m => m.SobrinoOtra)</td>
+                                    <td> @Html.DropDownListFor(m => m.SobrinoTiempoD, new SelectList(ViewBag.TiempoDetratamiento, "Value", "Text"))</td>
+                                    <td> @Html.CheckBoxFor(m => m.MadreTrat)</td>
+                                </tr>
+                                <tr>
+                                    <td>Hijo(a)</td>
+                                    <td> @Html.CheckBoxFor(m => m.HijoEnfMen)</td>
+                                    <td> @Html.CheckBoxFor(m => m.HijoEnfDep)</td>
+                                    <td> @Html.CheckBoxFor(m => m.HijoEnfAns)</td>
+                                    <td> @Html.CheckBoxFor(m => m.HijoEnfEsq)</td>
+                                    <td> @Html.CheckBoxFor(m => m.HijoEnfLicDrog)</td>
+                                    <td> @Html.CheckBoxFor(m => m.HijoEnfOtra)</td>
+                                    <td> @Html.DropDownListFor(m => m.HijoEnfTiempoD, new SelectList(ViewBag.TiempoDetratamiento, "Value", "Text"))</td>
+                                    <td> @Html.CheckBoxFor(m => m.MadreTrat)</td>
+                                </tr>
+                                <tr>
+                                    <td>Tio(a)</td>
+                                    <td> @Html.CheckBoxFor(m => m.TioEnfMen)</td>
+                                    <td> @Html.CheckBoxFor(m => m.TioEnfDep)</td>
+                                    <td> @Html.CheckBoxFor(m => m.TioEnfAns)</td>
+                                    <td> @Html.CheckBoxFor(m => m.TioEnfEsq)</td>
+                                    <td> @Html.CheckBoxFor(m => m.TioEnfLicDrog)</td>
+                                    <td> @Html.CheckBoxFor(m => m.TioEnfOtra)</td>
+                                    <td> @Html.DropDownListFor(m => m.TioEnfTiempoD, new SelectList(ViewBag.TiempoDetratamiento, "Value", "Text"))</td>
+                                    <td> @Html.CheckBoxFor(m => m.TioEnfTrat)</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.ProblemasFamil, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.ProblemasFamil)
-                    @Html.ValidationMessageFor(model => model.ProblemasFamil, "", new { @class = "text-danger" })
+                <br />
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="expe">¿Con qué frecuencia ha experimentado con alguna de las siguientes sustancias?</label>
+                            <table>
+                                <tr>
+                                    <th></th>
+                                    <th style="width:80px">Nunca</th>
+                                    <th style="width:100px">Hace más de un mes</th>
+                                    <th style="width:100px">Una vez el <br />último mes</th>
+                                    <th style="width:100px">Una vez <br />por semana</th>
+                                    <th style="width:150px">Dos o tres veces <br />por semana</th>
+                                    <th style="width:100px">Cuatro o cinco <br />veces por semana</th>
+                                    <th style="width:200px">Más de cinco <br />veces por semana</th>
+                                </tr>
+                                <tr>
+                                    <td style="width:100px">Alcohol</td>
+                                    <td> @Html.RadioButtonFor(m => m.Alcohol, "Nunca")</td>
+                                    <td> @Html.RadioButtonFor(m => m.Alcohol, "Hace más de un mes")</td>
+                                    <td> @Html.RadioButtonFor(m => m.Alcohol, "Una vez el último mes")</td>
+                                    <td> @Html.RadioButtonFor(m => m.Alcohol, "Una vez por semana")</td>
+                                    <td> @Html.RadioButtonFor(m => m.Alcohol, "Dos o tres veces por semana")</td>
+                                    <td> @Html.RadioButtonFor(m => m.Alcohol, "Cuatro o cinco veces por semana")</td>
+                                    <td> @Html.RadioButtonFor(m => m.Alcohol, "Más de cinco veces por semana")</td>
+                                </tr>
+                                <tr>
+                                    <td>Nicotina</td>
+                                    <td> @Html.RadioButtonFor(m => m.Nicotina, "Nunca")</td>
+                                    <td> @Html.RadioButtonFor(m => m.Nicotina, "Hace más de un mes")</td>
+                                    <td> @Html.RadioButtonFor(m => m.Nicotina, "Una vez el último mes")</td>
+                                    <td> @Html.RadioButtonFor(m => m.Nicotina, "Una vez por semana")</td>
+                                    <td> @Html.RadioButtonFor(m => m.Nicotina, "Dos o tres veces por semana")</td>
+                                    <td> @Html.RadioButtonFor(m => m.Nicotina, "Cuatro o cinco veces por semana")</td>
+                                    <td> @Html.RadioButtonFor(m => m.Nicotina, "Más de cinco veces por semana")</td>
+                                </tr>
+                                <tr>
+                                    <td>Cannabis</td>
+                                    <td> @Html.RadioButtonFor(m => m.Cannabis, "Nunca")</td>
+                                    <td> @Html.RadioButtonFor(m => m.Cannabis, "Hace más de un mes")</td>
+                                    <td> @Html.RadioButtonFor(m => m.Cannabis, "Una vez el último mes")</td>
+                                    <td> @Html.RadioButtonFor(m => m.Cannabis, "Una vez por semana")</td>
+                                    <td> @Html.RadioButtonFor(m => m.Cannabis, "Dos o tres veces por semana")</td>
+                                    <td> @Html.RadioButtonFor(m => m.Cannabis, "Cuatro o cinco veces por semana")</td>
+                                    <td> @Html.RadioButtonFor(m => m.Cannabis, "Más de cinco veces por semana")</td>
+                                </tr>
+                                <tr>
+                                    <td>Cocaina</td>
+                                    <td> @Html.RadioButtonFor(m => m.Cocaina, "Nunca")</td>
+                                    <td> @Html.RadioButtonFor(m => m.Cocaina, "Hace más de un mes")</td>
+                                    <td> @Html.RadioButtonFor(m => m.Cocaina, "Una vez el último mes")</td>
+                                    <td> @Html.RadioButtonFor(m => m.Cocaina, "Una vez por semana")</td>
+                                    <td> @Html.RadioButtonFor(m => m.Cocaina, "Dos o tres veces por semana")</td>
+                                    <td> @Html.RadioButtonFor(m => m.Cocaina, "Cuatro o cinco veces por semana")</td>
+                                    <td> @Html.RadioButtonFor(m => m.Cocaina, "Más de cinco veces por semana")</td>
+                                </tr>
+                                <tr>
+                                    <td>Sedantes</td>
+                                    <td> @Html.RadioButtonFor(m => m.Sedantes, "Nunca")</td>
+                                    <td> @Html.RadioButtonFor(m => m.Sedantes, "Hace más de un mes")</td>
+                                    <td> @Html.RadioButtonFor(m => m.Sedantes, "Una vez el último mes")</td>
+                                    <td> @Html.RadioButtonFor(m => m.Sedantes, "Una vez por semana")</td>
+                                    <td> @Html.RadioButtonFor(m => m.Sedantes, "Dos o tres veces por semana")</td>
+                                    <td> @Html.RadioButtonFor(m => m.Sedantes, "Cuatro o cinco veces por semana")</td>
+                                    <td> @Html.RadioButtonFor(m => m.Sedantes, "Más de cinco veces por semana")</td>
+                                </tr>
+                                <tr>
+                                    <td>Opiaceos</td>
+                                    <td> @Html.RadioButtonFor(m => m.Opiaceos, "Nunca")</td>
+                                    <td> @Html.RadioButtonFor(m => m.Opiaceos, "Hace más de un mes")</td>
+                                    <td> @Html.RadioButtonFor(m => m.Opiaceos, "Una vez el último mes")</td>
+                                    <td> @Html.RadioButtonFor(m => m.Opiaceos, "Una vez por semana")</td>
+                                    <td> @Html.RadioButtonFor(m => m.Opiaceos, "Dos o tres veces por semana")</td>
+                                    <td> @Html.RadioButtonFor(m => m.Opiaceos, "Cuatro o cinco veces por semana")</td>
+                                    <td> @Html.RadioButtonFor(m => m.Opiaceos, "Más de cinco veces por semana")</td>
+                                </tr>
+                                <tr>
+                                    <td>Otros</td>
+                                    <td> @Html.RadioButtonFor(m => m.Otros, "Nunca")</td>
+                                    <td> @Html.RadioButtonFor(m => m.Otros, "Hace más de un mes")</td>
+                                    <td> @Html.RadioButtonFor(m => m.Otros, "Una vez el último mes")</td>
+                                    <td> @Html.RadioButtonFor(m => m.Otros, "Una vez por semana")</td>
+                                    <td> @Html.RadioButtonFor(m => m.Otros, "Dos o tres veces por semana")</td>
+                                    <td> @Html.RadioButtonFor(m => m.Otros, "Cuatro o cinco veces por semana")</td>
+                                    <td> @Html.RadioButtonFor(m => m.Otros, "Más de cinco veces por semana")</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.CalamidadDomes, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.CalamidadDomes)
-                    @Html.ValidationMessageFor(model => model.CalamidadDomes, "", new { @class = "text-danger" })
+                <div class="row">
+                    <div class="col-md-12">
+                        <h3 style="text-align:center">Cuestionario para caracterización del uso de internet</h3>
+                        <p>@ViewBag.Parrafo</p>
+                        <br />
+                        <label>¿Usted usa internet? (En caso negativo, entregue o pase al siguiente cuestionario)</label>
+                        <br />
+                        @Html.RadioButtonFor(m => m.LoUsa, "Si")<label for="si5" style="margin-left:2em">Si</label>
+                        <br />
+                        @Html.RadioButtonFor(m => m.LoUsa, "No")<label for="No5" style="margin-left:2em">No</label>
+                        <br />
+                    </div>
                 </div>
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Estudio, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Estudio, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Estudio, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Deporte, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Deporte, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Deporte, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Culturales, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Culturales, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Culturales, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Entretenimiento, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Entretenimiento, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Entretenimiento, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Trabajo, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Trabajo, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Trabajo, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Religiosas, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Religiosas, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Religiosas, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Otras, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Otras, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Otras, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.CondicionMedica, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.CondicionMedica)
-                    @Html.ValidationMessageFor(model => model.CondicionMedica, "", new { @class = "text-danger" })
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>¿Cuál de los siguientes dispositivos usa Principalmente para acceder a internet? (puede seleccionar varios)</label>
+                            <br />
+                            @Html.CheckBoxFor(m => m.SmarthPhone) Teléfono inteligente
+                            <br />
+                            @Html.CheckBoxFor(m => m.Tablet) Tableta
+                            <br />
+                            @Html.CheckBoxFor(m => m.ComputadorFamiliar) Computador de escritorio (compartido con la familia)
+                            <br />
+                            @Html.CheckBoxFor(m => m.ComputadorPropio) Computador de escritorio propio
+                            <br />
+                            @Html.CheckBoxFor(m => m.PortatilFamiliar) Portatil compartido con la familia y que no puede llevar a su habitación
+                            <br />
+                            @Html.CheckBoxFor(m => m.PortatilPropio) Portatil propio o que puede llevar a su habitación
+                            <br />
+                            @Html.CheckBoxFor(m => m.TV) Internet por Televisor (SmartTv)
+                            <br />
+                            @Html.CheckBoxFor(m => m.Consola) Consola de videojuegos (Por ejemplo, PS4)
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>¿Cómo accede comúnmente a internet? (puede seleccionar varios)</label>
+                            <br />
+                            <br />
+                            @Html.CheckBoxFor(m => m.InternetCasa) Servicio de internet en la casa
+                            <br />
+                            @Html.CheckBoxFor(m => m.InternetMobil) Internet Móvil (Datos del teléfono móvil o dispositivo de internet 3G/4G)
+                            <br />
+                            @Html.CheckBoxFor(m => m.InternetTrabajo) Red o Wifi del trabajo
+                            <br />
+                            @Html.CheckBoxFor(m => m.InternetUniversidad) Red o Wifi de la universidad
+                            <br />
+                            @Html.CheckBoxFor(m => m.InternetPublico) Punto Wifi Gratuito
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.CondicionMedicaDet, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.CondicionMedicaDet, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.CondicionMedicaDet, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Alcohol, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Alcohol, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Alcohol, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Nicotina, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Nicotina, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Nicotina, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Cannabis, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Cannabis, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Cannabis, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Cocaina, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Cocaina, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Cocaina, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Sedantes, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Sedantes, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Sedantes, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Opiaceos, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Opiaceos, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Opiaceos, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Otros, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Otros, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Otros, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.LoUsa, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.LoUsa)
-                    @Html.ValidationMessageFor(model => model.LoUsa, "", new { @class = "text-danger" })
+                <div class="row">
+                    <div class="col-md-12">
+                        <input type="submit" value="Guardar" id="submit"
+                               class="btn btn-primary" />
+                    </div>
                 </div>
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.SmarthPhone, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.SmarthPhone)
-                    @Html.ValidationMessageFor(model => model.SmarthPhone, "", new { @class = "text-danger" })
-                </div>
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Tablet, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.Tablet)
-                    @Html.ValidationMessageFor(model => model.Tablet, "", new { @class = "text-danger" })
-                </div>
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.ComputadorFamiliar, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.ComputadorFamiliar)
-                    @Html.ValidationMessageFor(model => model.ComputadorFamiliar, "", new { @class = "text-danger" })
-                </div>
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.ComputadorPropio, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.ComputadorPropio)
-                    @Html.ValidationMessageFor(model => model.ComputadorPropio, "", new { @class = "text-danger" })
-                </div>
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.PortatilFamiliar, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.PortatilFamiliar)
-                    @Html.ValidationMessageFor(model => model.PortatilFamiliar, "", new { @class = "text-danger" })
-                </div>
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.PortatilPropio, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.PortatilPropio)
-                    @Html.ValidationMessageFor(model => model.PortatilPropio, "", new { @class = "text-danger" })
-                </div>
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.TV, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.TV)
-                    @Html.ValidationMessageFor(model => model.TV, "", new { @class = "text-danger" })
-                </div>
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Consola, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.Consola)
-                    @Html.ValidationMessageFor(model => model.Consola, "", new { @class = "text-danger" })
-                </div>
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.SalaHogar, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.SalaHogar)
-                    @Html.ValidationMessageFor(model => model.SalaHogar, "", new { @class = "text-danger" })
-                </div>
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Habitacion, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.Habitacion)
-                    @Html.ValidationMessageFor(model => model.Habitacion, "", new { @class = "text-danger" })
-                </div>
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Universidad, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.Universidad)
-                    @Html.ValidationMessageFor(model => model.Universidad, "", new { @class = "text-danger" })
-                </div>
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.TrabajoI, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.TrabajoI)
-                    @Html.ValidationMessageFor(model => model.TrabajoI, "", new { @class = "text-danger" })
-                </div>
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.CasaAmigo, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.CasaAmigo)
-                    @Html.ValidationMessageFor(model => model.CasaAmigo, "", new { @class = "text-danger" })
-                </div>
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.CasaFamiliar, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.CasaFamiliar)
-                    @Html.ValidationMessageFor(model => model.CasaFamiliar, "", new { @class = "text-danger" })
-                </div>
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.OtrosPublicos, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.OtrosPublicos)
-                    @Html.ValidationMessageFor(model => model.OtrosPublicos, "", new { @class = "text-danger" })
-                </div>
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.OtraVia, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.OtraVia)
-                    @Html.ValidationMessageFor(model => model.OtraVia, "", new { @class = "text-danger" })
-                </div>
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.InternetCasa, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.InternetCasa)
-                    @Html.ValidationMessageFor(model => model.InternetCasa, "", new { @class = "text-danger" })
-                </div>
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.InternetMobil, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.InternetMobil)
-                    @Html.ValidationMessageFor(model => model.InternetMobil, "", new { @class = "text-danger" })
-                </div>
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.InternetTrabajo, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.InternetTrabajo)
-                    @Html.ValidationMessageFor(model => model.InternetTrabajo, "", new { @class = "text-danger" })
-                </div>
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.InternetUniversidad, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.InternetUniversidad)
-                    @Html.ValidationMessageFor(model => model.InternetUniversidad, "", new { @class = "text-danger" })
-                </div>
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.InternetPublico, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.InternetPublico)
-                    @Html.ValidationMessageFor(model => model.InternetPublico, "", new { @class = "text-danger" })
-                </div>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
             </div>
         </div>
     </div>
-}
+    <script>
+        $('#datepicker').datepicker(
+            {
+                format: 'dd/mm/yyyy',
+                language: 'es',
+                autoclose: true
+            }
+        );
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+        $('.numero').keyup(function () {
+            this.value = this.value.replace(/[^0-9]/g, '');
+        });
+
+        mensaje = {};
+        mensaje.warn = function (texto) {
+            $('#mensaje').
+                html('<div class="alert alert-danger">' +
+                    '<a class="close" data-dismiss="alert">x</a><span>'
+                    + texto + '</span></div>');
+        };
+        mensaje.inform = function (texto) {
+            $('#mensaje').
+                html('<div class="alert alert-primary">' +
+                    '<a class="close" data-dismiss="alert">x</a><span>'
+                    + texto + '</span></div>');
+        };
+        mensaje.remove = function () {
+            $('#mensaje').html('');
+        };
+
+        $('#cliente').submit(function (event) {
+            mensaje.remove();
+            /*
+            if ($('#numeroDocumento').val().length < 6) {
+                mensaje.warn('El número de documento debe' +
+                    ' tener mínimo seis dígitos');
+                return false;
+            }
+            if (!validarFechaNacimiento($('#fechaNacimiento').val())) {
+                mensaje.warn('La fecha de nacimiento no es válida');
+                return false;
+            }
+            if (!$('#sexoMasculino:checked').val() && !$('#sexoFemenino:checked').val()) {
+                mensaje.warn('Debe seleccionar el sexo');
+                return false;
+            }
+            $('#antecedentes option').each(function () {
+                $(this).prop("selected", true);
+            });
+            */
+            event.preventDefault();
+            var formData = new FormData(this);
+            $.ajax({
+                type: "POST",
+                //dataType: "json",
+                url: "/Cliente/Regresar",
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function (response) {
+                    mensaje.inform("Cliente almacenado correctamente.");
+                   location.href = '@Url.Action("Formulario", "Formulario")';
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    mensaje.warn("Error al almacenar el cliente.");
+                }
+            });
+
+        });
+
+        function validarFechaNacimiento(fecha) {
+            if (fecha === "") return false;
+            var fechas = fecha.split("/");
+            var nuevaFecha = new Date(parseInt(fechas[2], 10),
+                parseInt(fechas[1], 10) - 1,
+                parseInt(fechas[0], 10));
+            if (nuevaFecha > new Date()) {
+                return false;
+            } else {
+                return true;
+            }
+        }
+    </script>
+</form>
