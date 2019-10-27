@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-
+using System.ComponentModel.DataAnnotations;
 namespace DigiSalud.Models
 {
     public class Encuesta
@@ -12,6 +12,7 @@ namespace DigiSalud.Models
         public string PartiCipa { get; set; }
 
         //Datos sociodemográficos
+        [Range(12, 100, ErrorMessage = "Debe estar entre 12 y 100")]
         public int Edad { get; set; }
         public string Sexo { get; set; }
         public string CiudadOrigen { get; set; }
@@ -128,7 +129,7 @@ namespace DigiSalud.Models
         public bool AbueloTrat { get; set; }
         public bool PrimoTrat { get; set; }
         public bool SobrinoTrat { get; set; }
-        public bool HijoEnfTrat { get; set; }
+        public bool HijoTrat { get; set; }
         public bool TioEnfTrat { get; set; }
         //Sustancias
         public string Alcohol { get; set; }
