@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DigiSalud.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -10,6 +11,11 @@ namespace DigiSalud.Controllers
     {
         // GET: Encuesta
         public ActionResult Encuesta()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult Encuesta(Encuesta encuesta)
         {
             return View();
         }

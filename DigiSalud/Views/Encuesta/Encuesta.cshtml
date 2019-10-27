@@ -3,7 +3,7 @@
 
     ViewBag.Title = "Ingresar";
     ViewBag.Encabezado = " Evaluación de un programa de tecnologías de la información" +
-        "y comunicación en salud mental pra los estudiantes de la facultad de medicina";
+        " y comunicación en salud mental pra los estudiantes de la facultad de medicina";
     ViewBag.Pregunta1 = "¿Diligenció el formato de consentimiento en papel?";
     ViewBag.Pregunta2 = "¿Está de acuerdo con el siguiente estudio?";
     ViewBag.Pregunta3 = "Durante su carrera, ¿ha sufrido retraso académico?";
@@ -38,7 +38,7 @@
 }
 
 <br />
-<form action="/Encuesta/Encuesta" autocomplete="on" method="post" id="emcuesta" name="emcuesta">
+<form action="/Encuesta/Encuesta" autocomplete="on" method="post" id="encuesta" name="encuesta">
     <div class="container">
         <div class="card">
             <div class="card-header bg-primary text-white">
@@ -84,7 +84,8 @@
                               @class = "form-control",
                               @placeholder = "Edad",
                               @maxlength = "100",
-                              @required = "required"
+                              @required = "required",
+                              @type = "number"
                           })
                     </div>
                     <div class="col-md-6">
@@ -93,7 +94,7 @@
                             <br />
                             @Html.RadioButtonFor(m => m.Sexo, "Hombre") <label for="hombre" style="margin-left:2em">Hombre</label>
                             <br />
-                            @Html.RadioButtonFor(m => m.Sexo, "Mujer") <label for="mujer" style="margin-left:2em">Mujer</label>
+                            @Html.RadioButtonFor(m => m.Sexo, "Mujer", new { @checked = true}) <label for="mujer" style="margin-left:2em">Mujer</label>
                         </div>
                     </div>
                 </div>
@@ -130,20 +131,21 @@
                         <div class="form-group">
                             <label for="EstaAtrasado">Durante su carrera ¿ha sufrido retraso académico?</label>
                             <br />
-                            @Html.RadioButtonFor(m => m.Retraso, "Si") <label for="si3" style="margin-left:2em">Si</label>
+                            @Html.RadioButtonFor(m => m.Retraso, "Si", new { @checked = true}) <label for="si3" style="margin-left:2em">Si</label>
                             <br />
                             @Html.RadioButtonFor(m => m.Retraso, "No") <label for="no3" style="margin-left:2em">No</label>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="semestresAtrasados">En caso afirmativo ¿Cuántos semestres se ha atrasado?</label>
+                            <label for="semestresAtrasados">@ViewBag.Pregunta4</label>
                             @Html.TextBoxFor(c => c.SemestresAtrasados,
                              new
                                {
                                    @class = "form-control",
                                    @placeholder = "Semestres atrasados",
                                    @maxlength = "100",
+                                   @type = "number"
                                })
                         </div>
                     </div>
@@ -192,7 +194,7 @@
                                 </tr>
                                 <tr>
                                     <td>Estudio</td>
-                                    <td> @Html.RadioButtonFor(m => m.Estudio, 0)</td>
+                                    <td> @Html.RadioButtonFor(m => m.Estudio, 0, new { @checked = true})</td>
                                     <td> @Html.RadioButtonFor(m => m.Estudio, 20)</td>
                                     <td> @Html.RadioButtonFor(m => m.Estudio, 30)</td>
                                     <td> @Html.RadioButtonFor(m => m.Estudio, 40)</td>
@@ -204,7 +206,7 @@
                                 </tr>
                                 <tr>
                                     <td>Deporte</td>
-                                    <td> @Html.RadioButtonFor(m => m.Deporte, 0)</td>
+                                    <td> @Html.RadioButtonFor(m => m.Deporte, 0, new { @checked = true})</td>
                                     <td> @Html.RadioButtonFor(m => m.Deporte, 20)</td>
                                     <td> @Html.RadioButtonFor(m => m.Deporte, 30)</td>
                                     <td> @Html.RadioButtonFor(m => m.Deporte, 40)</td>
@@ -216,7 +218,7 @@
                                 </tr>
                                 <tr>
                                     <td>Actividades culturales</td>
-                                    <td> @Html.RadioButtonFor(m => m.Culturales, 0)</td>
+                                    <td> @Html.RadioButtonFor(m => m.Culturales, 0, new { @checked = true})</td>
                                     <td> @Html.RadioButtonFor(m => m.Culturales, 20)</td>
                                     <td> @Html.RadioButtonFor(m => m.Culturales, 30)</td>
                                     <td> @Html.RadioButtonFor(m => m.Culturales, 40)</td>
@@ -228,7 +230,7 @@
                                 </tr>
                                 <tr>
                                     <td>Entretenimiento</td>
-                                    <td> @Html.RadioButtonFor(m => m.Entretenimiento, 0)</td>
+                                    <td> @Html.RadioButtonFor(m => m.Entretenimiento, 0, new { @checked = true})</td>
                                     <td> @Html.RadioButtonFor(m => m.Entretenimiento, 20)</td>
                                     <td> @Html.RadioButtonFor(m => m.Entretenimiento, 30)</td>
                                     <td> @Html.RadioButtonFor(m => m.Entretenimiento, 40)</td>
@@ -240,7 +242,7 @@
                                 </tr>
                                 <tr>
                                     <td>Trabajo</td>
-                                    <td> @Html.RadioButtonFor(m => m.Trabajo, 0)</td>
+                                    <td> @Html.RadioButtonFor(m => m.Trabajo, 0, new { @checked = true})</td>
                                     <td> @Html.RadioButtonFor(m => m.Trabajo, 20)</td>
                                     <td> @Html.RadioButtonFor(m => m.Trabajo, 30)</td>
                                     <td> @Html.RadioButtonFor(m => m.Trabajo, 40)</td>
@@ -252,19 +254,19 @@
                                 </tr>
                                 <tr>
                                     <td>Actividades religiosas</td>
-                                    <td> @Html.RadioButtonFor(m => m.Trabajo, 0)</td>
-                                    <td> @Html.RadioButtonFor(m => m.Trabajo, 20)</td>
-                                    <td> @Html.RadioButtonFor(m => m.Trabajo, 30)</td>
-                                    <td> @Html.RadioButtonFor(m => m.Trabajo, 40)</td>
-                                    <td> @Html.RadioButtonFor(m => m.Trabajo, 50)</td>
-                                    <td> @Html.RadioButtonFor(m => m.Trabajo, 60)</td>
-                                    <td> @Html.RadioButtonFor(m => m.Trabajo, 70)</td>
-                                    <td> @Html.RadioButtonFor(m => m.Trabajo, 80)</td>
-                                    <td> @Html.RadioButtonFor(m => m.Trabajo, 90)</td>
+                                    <td> @Html.RadioButtonFor(m => m.Religiosas, 0, new { @checked = true})</td>
+                                    <td> @Html.RadioButtonFor(m => m.Religiosas, 20)</td>
+                                    <td> @Html.RadioButtonFor(m => m.Religiosas, 30)</td>
+                                    <td> @Html.RadioButtonFor(m => m.Religiosas, 40)</td>
+                                    <td> @Html.RadioButtonFor(m => m.Religiosas, 50)</td>
+                                    <td> @Html.RadioButtonFor(m => m.Religiosas, 60)</td>
+                                    <td> @Html.RadioButtonFor(m => m.Religiosas, 70)</td>
+                                    <td> @Html.RadioButtonFor(m => m.Religiosas, 80)</td>
+                                    <td> @Html.RadioButtonFor(m => m.Religiosas, 90)</td>
                                 </tr>
                                 <tr>
                                     <td>Otras</td>
-                                    <td> @Html.RadioButtonFor(m => m.Otras, 0)</td>
+                                    <td> @Html.RadioButtonFor(m => m.Otras, 0, new { @checked = true})</td>
                                     <td> @Html.RadioButtonFor(m => m.Otras, 20)</td>
                                     <td> @Html.RadioButtonFor(m => m.Otras, 30)</td>
                                     <td> @Html.RadioButtonFor(m => m.Otras, 40)</td>
@@ -284,7 +286,7 @@
                         <div class="form-group">
                             <label for="EstaAtrasado">¿Ha sufrido alguna condición médica (enfermedad, traumatismo, etc.)?</label>
                             <br />
-                            @Html.RadioButtonFor(m => m.CondicionMedica, "Si") <label for="si4" style="margin-left:2em">Si</label>
+                            @Html.RadioButtonFor(m => m.CondicionMedica, "Si", new { @checked = true}) <label for="si4" style="margin-left:2em">Si</label>
                             <br />
                             @Html.RadioButtonFor(m => m.CondicionMedica, "No") <label for="no4" style="margin-left:2em">No</label>
                         </div>
@@ -314,7 +316,7 @@
                                     <th style="font-size:small">Esquizofrenia o psicosis</th>
                                     <th style="font-size:small">Consumo de licor o drogas</th>
                                     <th style="font-size:small">Otra enfermedad mental</th>
-                                    <th style="font-size:small">Tiempo en diagnóstico</th>
+                                    <th style="font-size:small">Tiempo en diagnóstico (años)</th>
                                     <th style="font-size:small">¿Está en tratamiento?</th>
                                 </tr>
                                 <tr>
@@ -439,7 +441,7 @@
                                 </tr>
                                 <tr>
                                     <td style="width:100px">Alcohol</td>
-                                    <td> @Html.RadioButtonFor(m => m.Alcohol, "Nunca")</td>
+                                    <td> @Html.RadioButtonFor(m => m.Alcohol, "Nunca", new { @checked = true})</td>
                                     <td> @Html.RadioButtonFor(m => m.Alcohol, "Hace más de un mes")</td>
                                     <td> @Html.RadioButtonFor(m => m.Alcohol, "Una vez el último mes")</td>
                                     <td> @Html.RadioButtonFor(m => m.Alcohol, "Una vez por semana")</td>
@@ -449,7 +451,7 @@
                                 </tr>
                                 <tr>
                                     <td>Nicotina</td>
-                                    <td> @Html.RadioButtonFor(m => m.Nicotina, "Nunca")</td>
+                                    <td> @Html.RadioButtonFor(m => m.Nicotina, "Nunca", new { @checked = true})</td>
                                     <td> @Html.RadioButtonFor(m => m.Nicotina, "Hace más de un mes")</td>
                                     <td> @Html.RadioButtonFor(m => m.Nicotina, "Una vez el último mes")</td>
                                     <td> @Html.RadioButtonFor(m => m.Nicotina, "Una vez por semana")</td>
@@ -459,7 +461,7 @@
                                 </tr>
                                 <tr>
                                     <td>Cannabis</td>
-                                    <td> @Html.RadioButtonFor(m => m.Cannabis, "Nunca")</td>
+                                    <td> @Html.RadioButtonFor(m => m.Cannabis, "Nunca", new { @checked = true})</td>
                                     <td> @Html.RadioButtonFor(m => m.Cannabis, "Hace más de un mes")</td>
                                     <td> @Html.RadioButtonFor(m => m.Cannabis, "Una vez el último mes")</td>
                                     <td> @Html.RadioButtonFor(m => m.Cannabis, "Una vez por semana")</td>
@@ -469,7 +471,7 @@
                                 </tr>
                                 <tr>
                                     <td>Cocaina</td>
-                                    <td> @Html.RadioButtonFor(m => m.Cocaina, "Nunca")</td>
+                                    <td> @Html.RadioButtonFor(m => m.Cocaina, "Nunca", new { @checked = true})</td>
                                     <td> @Html.RadioButtonFor(m => m.Cocaina, "Hace más de un mes")</td>
                                     <td> @Html.RadioButtonFor(m => m.Cocaina, "Una vez el último mes")</td>
                                     <td> @Html.RadioButtonFor(m => m.Cocaina, "Una vez por semana")</td>
@@ -479,7 +481,7 @@
                                 </tr>
                                 <tr>
                                     <td>Sedantes</td>
-                                    <td> @Html.RadioButtonFor(m => m.Sedantes, "Nunca")</td>
+                                    <td> @Html.RadioButtonFor(m => m.Sedantes, "Nunca", new { @checked = true})</td>
                                     <td> @Html.RadioButtonFor(m => m.Sedantes, "Hace más de un mes")</td>
                                     <td> @Html.RadioButtonFor(m => m.Sedantes, "Una vez el último mes")</td>
                                     <td> @Html.RadioButtonFor(m => m.Sedantes, "Una vez por semana")</td>
@@ -489,7 +491,7 @@
                                 </tr>
                                 <tr>
                                     <td>Opiaceos</td>
-                                    <td> @Html.RadioButtonFor(m => m.Opiaceos, "Nunca")</td>
+                                    <td> @Html.RadioButtonFor(m => m.Opiaceos, "Nunca", new { @checked = true})</td>
                                     <td> @Html.RadioButtonFor(m => m.Opiaceos, "Hace más de un mes")</td>
                                     <td> @Html.RadioButtonFor(m => m.Opiaceos, "Una vez el último mes")</td>
                                     <td> @Html.RadioButtonFor(m => m.Opiaceos, "Una vez por semana")</td>
@@ -499,7 +501,7 @@
                                 </tr>
                                 <tr>
                                     <td>Otros</td>
-                                    <td> @Html.RadioButtonFor(m => m.Otros, "Nunca")</td>
+                                    <td> @Html.RadioButtonFor(m => m.Otros, "Nunca", new { @checked = true})</td>
                                     <td> @Html.RadioButtonFor(m => m.Otros, "Hace más de un mes")</td>
                                     <td> @Html.RadioButtonFor(m => m.Otros, "Una vez el último mes")</td>
                                     <td> @Html.RadioButtonFor(m => m.Otros, "Una vez por semana")</td>
@@ -518,7 +520,7 @@
                         <br />
                         <label>¿Usted usa internet? (En caso negativo, entregue o pase al siguiente cuestionario)</label>
                         <br />
-                        @Html.RadioButtonFor(m => m.LoUsa, "Si")<label for="si5" style="margin-left:2em">Si</label>
+                        @Html.RadioButtonFor(m => m.LoUsa, "Si", new { @checked = true})<label for="si5" style="margin-left:2em">Si</label>
                         <br />
                         @Html.RadioButtonFor(m => m.LoUsa, "No")<label for="No5" style="margin-left:2em">No</label>
                         <br />
@@ -573,18 +575,6 @@
         </div>
     </div>
     <script>
-        $('#datepicker').datepicker(
-            {
-                format: 'dd/mm/yyyy',
-                language: 'es',
-                autoclose: true
-            }
-        );
-
-        $('.numero').keyup(function () {
-            this.value = this.value.replace(/[^0-9]/g, '');
-        });
-
         mensaje = {};
         mensaje.warn = function (texto) {
             $('#mensaje').
@@ -602,41 +592,51 @@
             $('#mensaje').html('');
         };
 
-        $('#cliente').submit(function (event) {
+        $('#encuesta').submit(function (event) {
             mensaje.remove();
-            /*
-            if ($('#numeroDocumento').val().length < 6) {
-                mensaje.warn('El número de documento debe' +
-                    ' tener mínimo seis dígitos');
+            var condicionMedica = $('#CondicionMedica:checked').val();
+            var detalleCondicion = $('#CondicionMedicaDet').val();
+            if (condicionMedica === "Si" && detalleCondicion === '') {
+                mensaje.warn('Debes indicar detalle de tu condición médica');
                 return false;
             }
-            if (!validarFechaNacimiento($('#fechaNacimiento').val())) {
-                mensaje.warn('La fecha de nacimiento no es válida');
+            var sumActividades = parseInt($('#Estudio:checked').val()) + parseInt($('#Deporte:checked').val())
+                + parseInt($('#Culturales:checked').val()) + parseInt($('#Entretenimiento:checked').val())
+                + parseInt($('#Trabajo:checked').val()) + parseInt($('#Religiosas:checked').val()) + parseInt($('#Otras').val());
+            if (sumActividades != 100) {
+                mensaje.warn('La suma de los porcentajes de actividades debe ser igual a 100. suman: '+  sumActividades);
                 return false;
             }
-            if (!$('#sexoMasculino:checked').val() && !$('#sexoFemenino:checked').val()) {
-                mensaje.warn('Debe seleccionar el sexo');
+
+            console.log(sumActividades);
+
+            var deAcuerdo = $('#PartiCipa:checked').val();
+            if (deAcuerdo !== "Si") {
+                 mensaje.warn('Debes estar de acuerdo para diligenciar nuestra encuesta');
                 return false;
             }
-            $('#antecedentes option').each(function () {
-                $(this).prop("selected", true);
-            });
-            */
+            var atrasado = $('#Retraso:checked').val();
+            var semestresAtrasados = $('#SemestresAtrasados').val();
+            if (atrasado === 'Si' && semestresAtrasados === '') {
+                mensaje.warn('Debes indicar cuántos semestres te has atrasado');
+                return false;
+            }
+            
+            
             event.preventDefault();
             var formData = new FormData(this);
             $.ajax({
                 type: "POST",
                 //dataType: "json",
-                url: "/Cliente/Regresar",
+                url: "/Encuesta/Encuesta",
                 data: formData,
                 processData: false,
                 contentType: false,
                 success: function (response) {
-                    mensaje.inform("Cliente almacenado correctamente.");
-                   location.href = '@Url.Action("Formulario", "Formulario")';
+                    mensaje.inform("Gracias por diligenciar nuestra encuesta.");
                 },
                 error: function (xhr, ajaxOptions, thrownError) {
-                    mensaje.warn("Error al almacenar el cliente.");
+                    mensaje.warn("Error al almacenar el encuesta.");
                 }
             });
 
