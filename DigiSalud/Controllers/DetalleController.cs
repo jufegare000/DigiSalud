@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DigiSalud.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,7 +12,15 @@ namespace DigiSalud.Controllers
         // GET: Detalle
         public ActionResult Detalle()
         {
-            return View();
+            if (Session["Encuesta"] != null)
+            {
+                Encuesta cv = (Encuesta)Session["Encuesta"];
+                return View(cv);
+            }
+            else
+            {
+                return View();
+            }
         }
     }
 }

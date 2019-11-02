@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DigiSalud.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -13,5 +14,11 @@ namespace DigiSalud.Controllers
         {
             return View();
         }
+        [HttpPost]
+        public void Encuesta(Encuesta encuesta)
+        {
+            Session["Encuesta"] = encuesta;
+        }
+
     }
 }
