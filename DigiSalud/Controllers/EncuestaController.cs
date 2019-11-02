@@ -15,9 +15,10 @@ namespace DigiSalud.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Encuesta(Encuesta encuesta)
+        public void Encuesta(Encuesta encuesta)
         {
-            return View();
+            Session["Encuesta"] = encuesta;
         }
+
     }
 }

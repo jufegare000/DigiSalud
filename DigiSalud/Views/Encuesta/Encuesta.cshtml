@@ -12,22 +12,22 @@
     tiempoDetratamiento.Add(new SelectListItem()
     {
         Text = "Nignuno",
-        Value = "1"
+        Value = "Nignuno"
     });
     tiempoDetratamiento.Add(new SelectListItem()
     {
         Text = "0 a 2",
-        Value = "2"
+        Value = "0 a 2"
     });
     tiempoDetratamiento.Add(new SelectListItem()
     {
         Text = "2 a 5",
-        Value = "3"
+        Value = "0 a 2"
     });
     tiempoDetratamiento.Add(new SelectListItem()
     {
         Text = "Más de 5",
-        Value = "4"
+        Value = "Más de 5"
     });
     ViewBag.TiempoDetratamiento = tiempoDetratamiento;
     ViewBag.Parrafo = "A continuación, encontrárá preguntas acerca del uso de internet y el tiempo que se gasta en línea, " +
@@ -673,6 +673,8 @@
                 processData: false,
                 contentType: false,
                 success: function (response) {
+                    location.href = '@Url.Action("Detalle", "Detalle")';
+                    /*
                     $('#Edad').focus();
                     mensaje.inform("Gracias por diligenciar nuestra encuesta, ¿desea volver a realizarla?.");
                     $("#rellenar").css("visibility", "visible");
@@ -783,7 +785,7 @@
                     $("#InternetMobil").prop("disabled", true);
                     $("#InternetTrabajo").prop("disabled", true);
                     $("#InternetUniversidad").prop("disabled", true);
-                    $("#InternetPublico").prop("disabled", true);
+                    $("#InternetPublico").prop("disabled", true);*/
                 },
                 error: function (xhr, ajaxOptions, thrownError) {
                     mensaje.warn("Error al almacenar el encuesta.");

@@ -1,5 +1,643 @@
-﻿@{
+﻿@model DigiSalud.Models.Encuesta
+@{
     Layout = "~/Views/Shared/_Layout.cshtml";
+    string formatoEnpapel = "";
+    string deacuerdo = "";
+    string edad = "";
+    string sexo = "";
+    string ciudadOrgien = "";
+    string ciudadActual = "";
+    string retraso = "";
+    string semestresAtra = "";
+    string motivos = ""; //
+    string tiempoEstudio = "";
+    string tiempoDeporte = "";
+    string tiempoActividadesCult = "";
+    string tiempoEntretenimiento = "";
+    string tiempoTrabajo = "";
+    string actvidadesReligiosas = "";
+    string otrasActividades = "";
+    string haSufridoCondMed = "";
+    string condMedDet = "";
+    string condicionesMadre = "";
+    string condicionesPadre = "";
+    string condicionesHermano = "";
+    string condicionesPareja = "";
+    string condicionesAbuelo = "";
+    string condicionesPrimo = "";
+    string condicionesSobrino = "";
+    string condicionesHijo = "";
+    string condicionesTio = "";
+    string alcohol = "";
+    string nicotina = "";
+    string cannabis = "";
+    string cocaina = "";
+    string sedantes = "";
+    string opiaceos = "";
+    string otros = "";
+    string usaInternet = "";
+    string dispositivos = "";
+    string comoAccede = "";
+
+    if(Model != null)
+    {
+        formatoEnpapel = Model.FormatoEnPapel;
+        deacuerdo = Model.PartiCipa;
+        edad = Model.Edad.ToString();
+        sexo = Model.Sexo;
+        ciudadOrgien = Model.CiudadOrigen;
+        ciudadActual = Model.CiudadOrigen;
+        retraso = Model.Retraso;
+        semestresAtra = Model.SemestresAtrasados.ToString();
+        if (Model.Dificultades)
+        {
+            motivos = motivos + " Dificultades académicas \n";
+        }
+        if (Model.ProblemasEcon)
+        {
+            motivos = motivos + "Problemas económicos \n";
+        }
+        if (Model.ProblemasSalud)
+        {
+            motivos = motivos + "Problemas de salud \n";
+        }
+        if (Model.ProblemasSaludMen)
+        {
+            motivos = motivos + "Problemas de salud mental \n";
+        }
+        if (Model.ProblemasFamil)
+        {
+            motivos = motivos + "Problemas Familiares \n";
+        }
+        if (Model.CalamidadDomes)
+        {
+            motivos = motivos + "Calamidad doméstica \n";
+        }
+        tiempoEstudio = Model.Estudio.ToString();
+        tiempoDeporte = Model.Deporte.ToString();
+        tiempoActividadesCult = Model.Culturales.ToString();
+        tiempoEntretenimiento = Model.Entretenimiento.ToString();
+        tiempoTrabajo = Model.Trabajo.ToString();
+        actvidadesReligiosas = Model.Religiosas.ToString();
+        otrasActividades = Model.Otras.ToString();
+        haSufridoCondMed = Model.CondicionMedica;
+        condMedDet = Model.CondicionMedicaDet;
+        if(Model.MadreEnfMen)
+        {
+            condicionesMadre = condicionesMadre + "Enfermedad Mental \n";
+        }
+        if (Model.MadreDep)
+        {
+            condicionesMadre = condicionesMadre + "Depresión \n";
+        }
+        if (Model.MadreAns)
+        {
+            condicionesMadre = condicionesMadre + "Ansiedad \n";
+        }
+        if (Model.MadreEsq)
+        {
+            condicionesMadre = condicionesMadre + "Esquizofrenia o Psicosis \n";
+        }
+        if (Model.MadreLicDrog)
+        {
+            condicionesMadre = condicionesMadre + "Consumo de licor o drogas \n";
+        }
+        if (Model.MadreOtra)
+        {
+            condicionesMadre = condicionesMadre + "Otra enfermedad mental \n";
+        }
+        condicionesMadre = condicionesMadre + "Tiempo en tratamiento: " + Model.MadreTiempoD + "\n";
+        if (Model.MadreTrat)
+        {
+            condicionesMadre = condicionesMadre + "En tratamiento";
+        }
+
+        //Padre
+
+        if(Model.PadreEnfMen)
+        {
+            condicionesPadre = condicionesPadre + "Enfermedad Mental, \n";
+        }
+        if (Model.PadreDep)
+        {
+            condicionesPadre = condicionesPadre + "Depresión, \n";
+        }
+        if (Model.PadreAns)
+        {
+            condicionesPadre = condicionesPadre + "Ansiedad, \n";
+        }
+        if (Model.PadreEsq)
+        {
+            condicionesPadre = condicionesPadre + "Esquizofrenia o Psicosis, \n";
+        }
+        if (Model.PadreLicDrog)
+        {
+            condicionesPadre = condicionesPadre + "Consumo de licor o drogas, \n";
+        }
+        if (Model.PadreOtra)
+        {
+            condicionesPadre = condicionesPadre + "Otra enfermedad mental, \n";
+        }
+        condicionesPadre = condicionesPadre + "Tiempo en tratamiento: " + Model.PadreTiempoD + "\n";
+        if (Model.PadreTrat)
+        {
+            condicionesPadre = condicionesPadre + "En tratamiento";
+        }
+
+        //Hermano
+
+        if(Model.HermanoEnfMen)
+        {
+            condicionesHermano = condicionesHermano + "Enfermedad Mental, \n";
+        }
+        if (Model.HermanoDep)
+        {
+            condicionesHermano = condicionesHermano + "Depresión, \n";
+        }
+        if (Model.HermanoAns)
+        {
+            condicionesHermano = condicionesHermano + "Ansiedad, \n";
+        }
+        if (Model.HermanoEsq)
+        {
+            condicionesHermano = condicionesHermano + "Esquizofrenia o Psicosis, \n";
+        }
+        if (Model.HermanoLicDrog)
+        {
+            condicionesHermano = condicionesHermano + "Consumo de licor o drogas, \n";
+        }
+        if (Model.HermanoOtra)
+        {
+            condicionesHermano = condicionesHermano + "Otra enfermedad mental, \n";
+        }
+        condicionesHermano = condicionesHermano + "Tiempo en tratamiento: " +Model.HermanoTiempoD + "\n";
+        if (Model.HermanoTrat)
+        {
+            condicionesHermano = condicionesHermano + "En tratamiento";
+        }
+
+        //Pareja o esposo
+
+        if(Model.ParejaEnfMen)
+        {
+            condicionesPareja = condicionesPareja + "Enfermedad Mental, \n";
+        }
+        if (Model.ParejaDep)
+        {
+            condicionesPareja = condicionesPareja + "Depresión, \n";
+        }
+        if (Model.ParejaAns)
+        {
+            condicionesPareja = condicionesPareja + "Ansiedad, \n";
+        }
+        if (Model.ParejaEsq)
+        {
+            condicionesPareja = condicionesPareja + "Esquizofrenia o Psicosis, \n";
+        }
+        if (Model.ParejaLicDrog)
+        {
+            condicionesPareja = condicionesPareja + "Consumo de licor o drogas, \n";
+        }
+        if (Model.ParejaOtra)
+        {
+            condicionesPareja = condicionesPareja + "Otra enfermedad mental, \n";
+        }
+        condicionesPareja = condicionesPareja + "Tiempo en tratamiento: " +Model.ParejaTiempoD + "\n";
+        if (Model.ParejaTrat)
+        {
+            condicionesPareja = condicionesPareja + "En tratamiento";
+        }
+
+        //Abuelo
+
+        if(Model.ParejaEnfMen)
+        {
+            condicionesAbuelo = condicionesAbuelo + "Enfermedad Mental, \n";
+        }
+        if (Model.ParejaDep)
+        {
+            condicionesAbuelo = condicionesAbuelo + "Depresión, \n";
+        }
+        if (Model.ParejaAns)
+        {
+            condicionesAbuelo = condicionesAbuelo + "Ansiedad, \n";
+        }
+        if (Model.ParejaEsq)
+        {
+            condicionesAbuelo = condicionesAbuelo + "Esquizofrenia o Psicosis, \n";
+        }
+        if (Model.ParejaLicDrog)
+        {
+            condicionesAbuelo = condicionesAbuelo + "Consumo de licor o drogas, \n";
+        }
+        if (Model.ParejaOtra)
+        {
+            condicionesAbuelo = condicionesAbuelo + "Otra enfermedad mental, \n";
+        }
+        condicionesAbuelo = condicionesAbuelo + "Tiempo en tratamiento: " +Model.ParejaTiempoD + ", \n";
+        if (Model.ParejaTrat)
+        {
+            condicionesAbuelo = condicionesAbuelo + "En tratamiento";
+        }
+
+        //Primo
+
+        if(Model.PrimoEnfMen)
+        {
+            condicionesPrimo = condicionesPrimo + "Enfermedad Mental, \n";
+        }
+        if (Model.PrimoDep)
+        {
+            condicionesPrimo = condicionesPrimo + "Depresión, \n";
+        }
+        if (Model.PrimoAns)
+        {
+            condicionesPrimo = condicionesPrimo + "Ansiedad, \n";
+        }
+        if (Model.PrimoEsq)
+        {
+            condicionesPrimo = condicionesPrimo + "Esquizofrenia o Psicosis, \n";
+        }
+        if (Model.PrimoLicDrog)
+        {
+            condicionesPrimo = condicionesPrimo + "Consumo de licor o drogas, \n";
+        }
+        if (Model.PrimoOtra)
+        {
+            condicionesPrimo = condicionesPrimo + "Otra enfermedad mental, \n";
+        }
+        condicionesPrimo = condicionesPrimo + "Tiempo en tratamiento: " +Model.PrimoTiempoD + ", \n";
+        if (Model.PrimoTrat)
+        {
+            condicionesPrimo = condicionesPrimo + "En tratamiento";
+        }
+
+        //Sobrino 
+
+        if(Model.SobrinoEnfMen)
+        {
+            condicionesSobrino = condicionesSobrino + "Enfermedad Mental, \n";
+        }
+        if (Model.SobrinoDep)
+        {
+            condicionesSobrino = condicionesSobrino + "Depresión, \n";
+        }
+        if (Model.SobrinoAns)
+        {
+            condicionesSobrino = condicionesSobrino + "Ansiedad, \n";
+        }
+        if (Model.SobrinoEsq)
+        {
+            condicionesSobrino = condicionesSobrino + "Esquizofrenia o Psicosis, \n";
+        }
+        if (Model.SobrinoLicDrog)
+        {
+            condicionesSobrino = condicionesSobrino + "Consumo de licor o drogas, \n";
+        }
+        if (Model.SobrinoOtra)
+        {
+            condicionesSobrino = condicionesSobrino + "Otra enfermedad mental, \n";
+        }
+        condicionesSobrino = condicionesSobrino + "Tiempo en tratamiento: " +Model.SobrinoTiempoD + ", \n";
+        if (Model.SobrinoTrat)
+        {
+            condicionesSobrino = condicionesSobrino + "En tratamiento";
+        }
+
+        //Hijo
+
+        if(Model.HijoEnfMen)
+        {
+            condicionesHijo = condicionesHijo + "Enfermedad Mental, \n";
+        }
+        if (Model.SobrinoDep)
+        {
+            condicionesHijo = condicionesHijo + "Depresión, \n";
+        }
+        if (Model.SobrinoAns)
+        {
+            condicionesHijo = condicionesHijo + "Ansiedad, \n";
+        }
+        if (Model.SobrinoEsq)
+        {
+            condicionesHijo = condicionesHijo + "Esquizofrenia o Psicosis, \n";
+        }
+        if (Model.SobrinoLicDrog)
+        {
+            condicionesHijo = condicionesHijo + "Consumo de licor o drogas, \n";
+        }
+        if (Model.SobrinoOtra)
+        {
+            condicionesHijo = condicionesHijo + "Otra enfermedad mental, \n";
+        }
+        condicionesHijo = condicionesHijo + "Tiempo en tratamiento: " +Model.SobrinoTiempoD + ", \n";
+        if (Model.SobrinoTrat)
+        {
+            condicionesHijo = condicionesHijo + "En tratamiento";
+        }
+
+        //Tio(a)
+
+        if(Model.TioEnfMen)
+        {
+            condicionesTio = condicionesTio + "Enfermedad Mental, \n";
+        }
+        if (Model.SobrinoDep)
+        {
+            condicionesTio = condicionesTio + "Depresión, \n";
+        }
+        if (Model.SobrinoAns)
+        {
+            condicionesTio = condicionesTio + "Ansiedad, \n";
+        }
+        if (Model.SobrinoEsq)
+        {
+            condicionesTio = condicionesTio + "Esquizofrenia o Psicosis, \n";
+        }
+        if (Model.SobrinoLicDrog)
+        {
+            condicionesTio = condicionesTio + "Consumo de licor o drogas, \n";
+        }
+        if (Model.SobrinoOtra)
+        {
+            condicionesTio = condicionesTio + "Otra enfermedad mental, \n";
+        }
+        condicionesTio =  condicionesTio + "Tiempo en tratamiento: "  +Model.SobrinoTiempoD + ", \n";
+        if (Model.SobrinoTrat)
+        {
+            condicionesTio = condicionesTio + "En tratamiento";
+        }
+        alcohol = Model.Alcohol;
+        nicotina = Model.Cocaina;
+        cannabis = Model.Cannabis;
+        cocaina = Model.Cocaina;
+        sedantes = Model.Sedantes;
+        opiaceos = Model.Opiaceos;
+        otros = Model.Otros;
+        usaInternet = Model.LoUsa;
+        if (Model.SmarthPhone)
+        {
+            dispositivos = dispositivos + "Teléfono inteligente, \n";
+        }
+        if (Model.Tablet)
+        {
+            dispositivos = dispositivos + "Tablet, \n";
+        }
+        if (Model.ComputadorFamiliar)
+        {
+            dispositivos = dispositivos + " Computador de escritorio (compartido con la familia), \n";
+        }
+        if (Model.ComputadorPropio)
+        {
+            dispositivos = dispositivos + " Computador de escritorio propio, \n";
+        }
+        if (Model.PortatilFamiliar)
+        {
+            dispositivos = dispositivos + " Portatil compartido con la familia y que no puede llevar a su habitación, \n";
+        }
+        if (Model.PortatilPropio)
+        {
+            dispositivos = dispositivos + " Portatil propio o que puede llevar a su habitación, \n";
+        }
+        if (Model.TV)
+        {
+            dispositivos = dispositivos + "  Internet por Televisor (SmartTv), \n";
+        }
+        if (Model.Consola)
+        {
+            dispositivos = dispositivos + "  Consola de videojuegos (Por ejemplo, PS4), \n";
+        }
+
+        //Red
+
+        if (Model.InternetCasa)
+        {
+            comoAccede = comoAccede + "Servicio de internet en la casa, \n";
+        }
+        if (Model.InternetMobil)
+        {
+            comoAccede = comoAccede + "Internet Móvil (Datos del teléfono móvil o dispositivo de internet 3G/4G),  \n";
+        }
+        if (Model.InternetTrabajo)
+        {
+            comoAccede = comoAccede + " Red o Wifi del trabajo,  \n";
+        }
+        if (Model.InternetUniversidad)
+        {
+            comoAccede = comoAccede + "  Red o Wifi de la universidad,  \n";
+        }
+        if (Model.InternetPublico)
+        {
+            comoAccede = comoAccede + " Punto Wifi Gratuito,  \n";
+        }
+    }
+
 }
 
 <h2>Gracias por diligenciar la encuesta</h2>
+
+<table>
+    <tr>
+        <td>¿Diligenció el formato en papel?</td>
+        <td>-</td>
+        <td>@formatoEnpapel</td>
+    </tr>
+    <tr>
+        <td>¿Estuvo de acuerdo con el estudio?</td>
+        <td></td>
+        <td>@deacuerdo</td>
+    </tr>
+    <tr>
+        <td>¿Cuantos años tiene?</td>
+        <td></td>
+        <td>@edad</td>
+    </tr>
+    <tr>
+        <td>¿Cual es su sexo?</td>
+        <td></td>
+        <td>@sexo</td>
+    </tr>
+    <tr>
+        <td>¿Cual es su ciudad de origen?</td>
+        <td></td>
+        <td>@ciudadOrgien</td>
+    </tr>
+    <tr>
+        <td>¿En cual ciudad reside actualmente?</td>
+        <td></td>
+        <td>@ciudadActual</td>
+    </tr>
+    <tr>
+        <td>Durante su carrera ¿ha sufrido retraso académico?</td>
+        <td></td>
+        <td>@retraso</td>
+    </tr>
+    <tr>
+        <td>En caso afirmativo ¿cuantos semestres se ha atrasado?</td>
+        <td></td>
+        <td>@semestresAtra</td>
+    </tr>
+    <tr>
+        <td>Según su experiencia, ¿qué motivos pudieron relacionarse con los atrasos?</td>
+        <td></td>
+        <td>@motivos</td>
+    </tr>
+    <tr>
+        <td><h5>¿Qué porción de tiempo a la semana considera que invierte en las siguientes actividades? (Horas)</h5></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>Estudio</td>
+        <td></td>
+        <td>@tiempoEstudio</td>
+    </tr>
+    <tr>
+        <td>Deporte</td>
+        <td></td>
+        <td>@tiempoDeporte</td>
+    </tr>
+    <tr>
+        <td>Actividades culturales</td>
+        <td></td>
+        <td>@tiempoActividadesCult</td>
+    </tr>
+    <tr>
+        <td>Entretenimiento</td>
+        <td></td>
+        <td>@tiempoEntretenimiento</td>
+    </tr>
+    <tr>
+        <td>Trabajo</td>
+        <td></td>
+        <td>@tiempoTrabajo</td>
+    </tr>
+    <tr>
+        <td>Actividades religiosas</td>
+        <td></td>
+        <td>@actvidadesReligiosas</td>
+    </tr>
+    <tr>
+        <td>Otras</td>
+        <td></td>
+        <td>@otrasActividades</td>
+    </tr>
+    <tr>
+        <td>¿Ha sufrido alguna condición médica (enfermedad, traumatismo, etc.)</td>
+        <td></td>
+        <td>@haSufridoCondMed</td>
+    </tr>
+    <tr>
+        <td>Si respondió "Si" por favor especifique los diagnósticos, los años y si se encuentra en tratamiento.</td>
+        <td></td>
+        <td>@condMedDet</td>
+    </tr>
+    <tr>
+        <td><h5>Por favor especifique si sus familiares tienen alguno de los siguientes diagnósticos, tiempo y si se encuentra en tratamiento</h5></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>Madre</td>
+        <td></td>
+        <td>@condicionesMadre</td>
+    </tr>
+    <tr>
+        <td>Padre</td>
+        <td></td>
+        <td>@condicionesPadre</td>
+    </tr>
+    <tr>
+        <td>Hermano(a)	</td>
+        <td></td>
+        <td>@condicionesHermano</td>
+    </tr>
+    <tr>
+        <td>
+            Pareja o
+            Esposo(a)
+        <td>
+        <td></td>
+        <td>@condicionesPareja</td>
+    </tr>
+    <tr>
+        <td>Abuelo(a)</td>
+        <td></td>
+        <td>@condicionesAbuelo</td>
+    </tr>
+    <tr>
+        <td>Primo(a)</td>
+        <td></td>
+        <td>@condicionesPrimo</td>
+    </tr>
+    <tr>
+        <td>Sobrino(a)</td>
+        <td></td>
+        <td>@condicionesSobrino</td>
+    </tr>
+    <tr>
+        <td>Hijo(a)</td>
+        <td></td>
+        <td>@condicionesHijo</td>
+    </tr>
+    <tr>
+        <td>Tio(a)</td>
+        <td></td>
+        <td>@condicionesHijo</td>
+    </tr>
+    <tr>
+        <td><h5>¿Con qué frecuencia ha experimentado con alguna de las siguientes sustancias?</h5></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>Alcohol</td>
+        <td></td>
+        <td>@alcohol</td>
+    </tr>
+    <tr>
+        <td>Nicotina</td>
+        <td></td>
+        <td>@nicotina</td>
+    </tr>
+    <tr>
+        <td>Cannabis	</td>
+        <td></td>
+        <td>@cannabis</td>
+    </tr>
+    <tr>
+        <td>Cocaina</td>
+        <td></td>
+        <td>@cocaina</td>
+    </tr>
+    <tr>
+        <td>Sedantes</td>
+        <td></td>
+        <td>@sedantes</td>
+    </tr>
+    <tr>
+        <td>Opiaceos</td>
+        <td></td>
+        <td>@opiaceos</td>
+    </tr>
+    <tr>
+        <td>Otros</td>
+        <td></td>
+        <td>@otros</td>
+    </tr>
+    <tr>
+        <td>¿Usted usa internet?</td>
+        <td></td>
+        <td>@usaInternet</td>
+    </tr>
+    <tr>
+        <td>¿Cuál de los siguientes dispositivos usa Principalmente para acceder a internet?</td>
+        <td></td>
+        <td>@dispositivos</td>
+    </tr>
+    <tr>
+        <td>¿Cómo accede comúnmente a internet?</td>
+        <td></td>
+        <td>@comoAccede</td>
+    </tr>
+</table>
