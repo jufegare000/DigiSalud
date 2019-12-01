@@ -1,4 +1,4 @@
-﻿using DigiSalud.Models;
+﻿using DigiSalud.Models.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +14,7 @@ namespace DigiSalud.Controllers
         {
             if (Session["Encuesta"] != null)
             {
-                Encuesta cv = (Encuesta)Session["Encuesta"];
+                encuesta cv = (encuesta)Session["Encuesta"];
                 return View(cv);
             }
             else
