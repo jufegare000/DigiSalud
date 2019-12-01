@@ -30,6 +30,11 @@ namespace DigiSalud
                 url: "{controller}/{id}",
                 defaults: new { controller = "Detalle", action = "Detalle" }
             );
+            routes.MapRoute(
+                name: "Grafica",
+                url: "{controller}/{id}",
+                defaults: new { controller = "Grafica", action = "Grafica" }
+            );
         }
     }
 }

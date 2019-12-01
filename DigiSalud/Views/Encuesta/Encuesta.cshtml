@@ -591,11 +591,39 @@
                             @Html.CheckBoxFor(m => m.InternetPublico) Punto Wifi Gratuito
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-md-12">
+
+                            <p>¿Dónde accedes más frecuentemente a internet?</p>
+                            <br />
+                            @Html.CheckBoxFor(m => m.SalaHogar) En la sala de estar u otro cuarto público al hogar
+                            <br />
+                            @Html.CheckBoxFor(m => m.Habitacion) En su propio cuarto o un cuarto privado en la casa
+                            <br />
+                            @Html.CheckBoxFor(m => m.Universidad) En la universidad
+                            <br />
+                            @Html.CheckBoxFor(m => m.TrabajoI) En el trabajo
+                            <br />
+                            @Html.CheckBoxFor(m => m.CasaAmigo) En la casa de un amigo
+                            <br />
+                            @Html.CheckBoxFor(m => m.CasaFamiliar) En la casa de un familiar
+                            <br />
+                            @Html.CheckBoxFor(m => m.OtrosPublicos) Otros lugares (Centros comerciales, librerías, etc)
+                            <br />
+                            @Html.CheckBoxFor(m => m.OtraVia) Cualquier otra vía teléfono inteligente o tablet
+                            <br />
+                        </div>
+                    </div>
                 </div>
                 <div class="row">
                     <div class="col-md-12">
                         <input type="submit" value="Guardar" id="submit"
                                class="btn btn-primary" />
+                        <input type="button"
+                               id="encuestas"
+                               onClick=" location.href = '@Url.Action("Index", "encuestas")'; "
+                               VALUE="Ver encuestas realizadas"
+                               class="btn btn-secondary"/>
                     </div>
                 </div>
             </div>
@@ -673,120 +701,7 @@
                 processData: false,
                 contentType: false,
                 success: function (response) {
-                    location.href = '@Url.Action("Detalle", "Detalle")';
-                    /*
-                    $('#Edad').focus();
-                    mensaje.inform("Gracias por diligenciar nuestra encuesta, ¿desea volver a realizarla?.");
-                    $("#rellenar").css("visibility", "visible");
-                    //Deshabilitar todos los campos
-                    $("#Edad").prop("disabled", true);
-                    $("#Si1").prop("disabled", true);
-                    $("#No1").prop("disabled", true);
-                    $("#Si2").prop("disabled", true);
-                    $("#No2").prop("disabled", true);
-                    $("#PartiCipa").prop("disabled", true);
-                    $("#chkHombre").prop("disabled", true);
-                    $("#chkMujer").prop("disabled", true);
-                    $("#Sexo").prop("disabled", true);
-                    $("#CiudadOrigen").prop("disabled", true);
-                    $("#CiudadActual").prop("disabled", true); 
-                    $("#retraso1").prop("disabled", true);
-                    $("#retraso2").prop("disabled", true);
-                    $("#SemestresAtrasados").prop("disabled", true);
-                    $("#rbnDif").prop("disabled", true);
-                    $("#rbnProbE").prop("disabled", true);
-                    $("#rbnProbS").prop("disabled", true);
-                    $("#rbnProbSM").prop("disabled", true);
-                    $("#rbnProbF").prop("disabled", true);
-                    $("#rbnCald").prop("disabled", true);
-                    $("#CondicionMedicaDet").prop("disabled", true);
-                    $("#submit").prop("disabled", true);
-                    $("#MadreEnfMen").prop("disabled", true);
-                    $("#MadreDep").prop("disabled", true);
-                    $("#MadreAns").prop("disabled", true);
-                    $("#MadreEsq").prop("disabled", true);
-                    $("#MadreLicDrog").prop("disabled", true);
-                    $("#MadreOtra").prop("disabled", true);
-                    $("#MadreTiempoD").prop("disabled", true);
-                    $("#MadreTrat").prop("disabled", true);
-                    $("#PadreEnfMen").prop("disabled", true);
-                    $("#PadreDep").prop("disabled", true);
-                    $("#PadreAns").prop("disabled", true);
-                    $("#PadreEsq").prop("disabled", true);
-                    $("#PadreLicDrog").prop("disabled", true);
-                    $("#PadreOtra").prop("disabled", true);
-                    $("#PadreTiempoD").prop("disabled", true);
-                    $("#PadreTrat").prop("disabled", true);
-                    $("#HermanoEnfMen").prop("disabled", true);
-                    $("#HermanoDep").prop("disabled", true);
-                    $("#HermanoAns").prop("disabled", true);
-                    $("#HermanoEsq").prop("disabled", true);
-                    $("#HermanoLicDrog").prop("disabled", true);
-                    $("#HermanoOtra").prop("disabled", true);
-                    $("#HermanoTiempoD").prop("disabled", true);
-                    $("#HermanoTrat").prop("disabled", true);
-                    $("#ParejaEnfMen").prop("disabled", true);
-                    $("#ParejaDep").prop("disabled", true);
-                    $("#ParejaAns").prop("disabled", true);
-                    $("#ParejaEsq").prop("disabled", true);
-                    $("#ParejaLicDrog").prop("disabled", true);
-                    $("#ParejaOtra").prop("disabled", true);
-                    $("#ParejaTiempoD").prop("disabled", true);
-                    $("#ParejaTrat").prop("disabled", true);
-                    $("#AbueloEnfMen").prop("disabled", true);
-                    $("#AbueloDep").prop("disabled", true);
-                    $("#AbueloAns").prop("disabled", true);
-                    $("#AbueloEsq").prop("disabled", true);
-                    $("#AbueloLicDrog").prop("disabled", true);
-                    $("#AbueloOtra").prop("disabled", true);
-                    $("#AbueloTiempoD").prop("disabled", true);
-                    $("#AbueloTrat").prop("disabled", true);
-                    $("#PrimoEnfMen").prop("disabled", true);
-                    $("#PrimoDep").prop("disabled", true);
-                    $("#PrimoAns").prop("disabled", true);
-                    $("#PrimoEsq").prop("disabled", true);
-                    $("#PrimoLicDrog").prop("disabled", true);
-                    $("#PrimoOtra").prop("disabled", true);
-                    $("#PrimoTiempoD").prop("disabled", true);
-                    $("#PrimoTrat").prop("disabled", true);
-                    $("#SobrinoEnfMen").prop("disabled", true);
-                    $("#SobrinoDep").prop("disabled", true);
-                    $("#SobrinoAns").prop("disabled", true);
-                    $("#SobrinoEsq").prop("disabled", true);
-                    $("#SobrinoLicDrog").prop("disabled", true);
-                    $("#SobrinoOtra").prop("disabled", true);
-                    $("#SobrinoTiempoD").prop("disabled", true);
-                    $("#SobrinoTrat").prop("disabled", true);
-                    $("#HijoEnfMen").prop("disabled", true);
-                    $("#HijoEnfDep").prop("disabled", true);
-                    $("#HijoEnfAns").prop("disabled", true);
-                    $("#HijoEnfEsq").prop("disabled", true);
-                    $("#HijoEnfLicDrog").prop("disabled", true);
-                    $("#HijoEnfOtra").prop("disabled", true);
-                    $("#HijoEnfTiempoD").prop("disabled", true);
-                    $("#HijoTrat").prop("disabled", true);
-                    $("#TioEnfMen").prop("disabled", true);
-                    $("#TioEnfDep").prop("disabled", true);
-                    $("#TioEnfAns").prop("disabled", true);
-                    $("#TioEnfEsq").prop("disabled", true);
-                    $("#TioEnfLicDrog").prop("disabled", true);
-                    $("#TioEnfOtra").prop("disabled", true);
-                    $("#TioEnfTiempoD").prop("disabled", true);
-                    $("#TioEnfTrat").prop("disabled", true);
-                    $("#SmarthPhone").prop("disabled", true);
-                    $("#Tablet").prop("disabled", true);
-                    $("#ComputadorFamiliar").prop("disabled", true);
-                    $("#ComputadorPropio").prop("disabled", true);
-                    $("#PortatilFamiliar").prop("disabled", true);
-                    $("#PortatilPropio").prop("disabled", true);
-                    $("#TV").prop("disabled", true);
-                    $("#Consola").prop("disabled", true);
-                    $("#InternetCasa").prop("disabled", true);
-                    $("#InternetMobil").prop("disabled", true);
-                    $("#InternetTrabajo").prop("disabled", true);
-                    $("#InternetUniversidad").prop("disabled", true);
-                    $("#InternetPublico").prop("disabled", true);*/
-                },
+                    location.href = '@Url.Action("Detalle", "Detalle")'; },
                 error: function (xhr, ajaxOptions, thrownError) {
                     mensaje.warn("Error al almacenar el encuesta.");
                 }
