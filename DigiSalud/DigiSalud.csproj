@@ -45,10 +45,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -123,6 +131,7 @@
     <Compile Include="Controllers\ClienteController.cs" />
     <Compile Include="Controllers\DetalleController.cs" />
     <Compile Include="Controllers\EncuestaController.cs" />
+    <Compile Include="Controllers\encuestasController.cs" />
     <Compile Include="Controllers\FormularioController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
@@ -130,6 +139,24 @@
     </Compile>
     <Compile Include="Models\Cliente.cs" />
     <Compile Include="Models\Encuesta.cs" />
+    <Compile Include="Models\Entities\encuesta.cs">
+      <DependentUpon>Encuestadb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entities\Encuestadb.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Encuestadb.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entities\Encuestadb.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Encuestadb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entities\Encuestadb.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Encuestadb.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -244,6 +271,16 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Models\Entities\Encuestadb.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Encuestadb.Context.cs</LastGenOutput>
+      <DependentUpon>Encuestadb.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\Entities\Encuestadb.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Encuestadb.edmx</DependentUpon>
+      <LastGenOutput>Encuestadb.cs</LastGenOutput>
+    </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Content\bootstrap\css\.DS_Store" />
@@ -261,6 +298,13 @@
     <Content Include="Content\datepicker\css\bootstrap-datepicker.standalone.css.map" />
     <Content Include="Content\datepicker\css\bootstrap-datepicker3.css.map" />
     <Content Include="Content\datepicker\css\bootstrap-datepicker3.standalone.css.map" />
+    <EntityDeploy Include="Models\Entities\Encuestadb.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Encuestadb.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\Entities\Encuestadb.edmx.diagram">
+      <DependentUpon>Encuestadb.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -291,6 +335,11 @@
     <Content Include="Views\Formulario\Formulario.cshtml" />
     <Content Include="Views\Detalle\Detalle.cshtml" />
     <Content Include="Views\Encuesta\Encuesta.cshtml" />
+    <Content Include="Views\encuestas\Create.cshtml" />
+    <Content Include="Views\encuestas\Delete.cshtml" />
+    <Content Include="Views\encuestas\Details.cshtml" />
+    <Content Include="Views\encuestas\Edit.cshtml" />
+    <Content Include="Views\encuestas\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -307,6 +356,9 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -1,0 +1,777 @@
+﻿@model IEnumerable<DigiSalud.Models.Entities.encuesta>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FormatoEnPapel)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PartiCipa)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Edad)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Sexo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CiudadOrigen)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CiudadActual)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Retraso)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SemestresAtrasados)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Dificultades)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProblemasEcon)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProblemasSalud)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProblemasSaludMen)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProblemasFamil)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CalamidadDomes)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Estudio)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Deporte)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Culturales)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Entretenimiento)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Trabajo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Religiosas)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Otras)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CondicionMedica)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CondicionMedicaDet)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MadreEnfMen)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PadreEnfMen)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HermanoEnfMen)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ParejaEnfMen)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AbueloEnfMen)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PrimoEnfMen)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SobrinoEnfMen)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HijoEnfMen)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TioEnfMen)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MadreDep)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PadreDep)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HermanoDep)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ParejaDep)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AbueloDep)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PrimoDep)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SobrinoDep)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HijoEnfDep)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TioEnfDep)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MadreAns)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PadreAns)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HermanoAns)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ParejaAns)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AbueloAns)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PrimoAns)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SobrinoAns)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HijoEnfAns)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TioEnfAns)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MadreEsq)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PadreEsq)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HermanoEsq)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ParejaEsq)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AbueloEsq)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PrimoEsq)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SobrinoEsq)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HijoEnfEsq)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TioEnfEsq)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MadreLicDrog)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PadreLicDrog)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HermanoLicDrog)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ParejaLicDrog)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AbueloLicDrog)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PrimoLicDrog)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SobrinoLicDrog)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HijoEnfLicDrog)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TioEnfLicDrog)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MadreOtra)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PadreOtra)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HermanoOtra)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ParejaOtra)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AbueloOtra)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PrimoOtra)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SobrinoOtra)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HijoEnfOtra)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TioEnfOtra)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MadreTiempoD)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PadreTiempoD)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HermanoTiempoD)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ParejaTiempoD)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AbueloTiempoD)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PrimoTiempoD)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SobrinoTiempoD)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HijoEnfTiempoD)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TioEnfTiempoD)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MadreTrat)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PadreTrat)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HermanoTrat)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ParejaTrat)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AbueloTrat)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PrimoTrat)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SobrinoTrat)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HijoTrat)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TioEnfTrat)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Alcohol)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nicotina)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cannabis)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cocaina)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Sedantes)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Opiaceos)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Otros)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LoUsa)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SmarthPhone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tablet)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ComputadorFamiliar)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ComputadorPropio)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PortatilFamiliar)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PortatilPropio)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TV)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Consola)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SalaHogar)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Habitacion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Universidad)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TrabajoI)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CasaAmigo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CasaFamiliar)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OtrosPublicos)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OtraVia)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.InternetCasa)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.InternetMobil)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.InternetTrabajo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.InternetUniversidad)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.InternetPublico)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fechaDiligen)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.FormatoEnPapel)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PartiCipa)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Edad)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Sexo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CiudadOrigen)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CiudadActual)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Retraso)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SemestresAtrasados)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Dificultades)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProblemasEcon)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProblemasSalud)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProblemasSaludMen)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProblemasFamil)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CalamidadDomes)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Estudio)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Deporte)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Culturales)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Entretenimiento)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Trabajo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Religiosas)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Otras)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CondicionMedica)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CondicionMedicaDet)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MadreEnfMen)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PadreEnfMen)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HermanoEnfMen)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ParejaEnfMen)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AbueloEnfMen)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PrimoEnfMen)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SobrinoEnfMen)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HijoEnfMen)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TioEnfMen)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MadreDep)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PadreDep)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HermanoDep)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ParejaDep)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AbueloDep)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PrimoDep)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SobrinoDep)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HijoEnfDep)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TioEnfDep)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MadreAns)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PadreAns)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HermanoAns)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ParejaAns)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AbueloAns)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PrimoAns)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SobrinoAns)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HijoEnfAns)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TioEnfAns)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MadreEsq)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PadreEsq)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HermanoEsq)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ParejaEsq)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AbueloEsq)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PrimoEsq)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SobrinoEsq)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HijoEnfEsq)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TioEnfEsq)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MadreLicDrog)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PadreLicDrog)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HermanoLicDrog)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ParejaLicDrog)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AbueloLicDrog)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PrimoLicDrog)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SobrinoLicDrog)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HijoEnfLicDrog)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TioEnfLicDrog)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MadreOtra)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PadreOtra)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HermanoOtra)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ParejaOtra)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AbueloOtra)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PrimoOtra)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SobrinoOtra)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HijoEnfOtra)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TioEnfOtra)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MadreTiempoD)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PadreTiempoD)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HermanoTiempoD)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ParejaTiempoD)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AbueloTiempoD)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PrimoTiempoD)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SobrinoTiempoD)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HijoEnfTiempoD)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TioEnfTiempoD)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MadreTrat)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PadreTrat)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HermanoTrat)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ParejaTrat)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AbueloTrat)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PrimoTrat)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SobrinoTrat)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HijoTrat)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TioEnfTrat)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Alcohol)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nicotina)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cannabis)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cocaina)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Sedantes)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Opiaceos)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Otros)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LoUsa)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SmarthPhone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Tablet)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ComputadorFamiliar)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ComputadorPropio)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PortatilFamiliar)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PortatilPropio)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TV)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Consola)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SalaHogar)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Habitacion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Universidad)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TrabajoI)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CasaAmigo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CasaFamiliar)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OtrosPublicos)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OtraVia)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.InternetCasa)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.InternetMobil)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.InternetTrabajo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.InternetUniversidad)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.InternetPublico)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fechaDiligen)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+        </td>
+    </tr>
+}
+
+</table>

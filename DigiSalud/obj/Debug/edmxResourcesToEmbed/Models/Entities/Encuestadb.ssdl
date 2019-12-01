@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="digisaludModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="encuesta">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FormatoEnPapel" Type="varchar" MaxLength="2" />
+    <Property Name="PartiCipa" Type="varchar" MaxLength="2" />
+    <Property Name="Edad" Type="int" />
+    <Property Name="Sexo" Type="varchar" MaxLength="10" />
+    <Property Name="CiudadOrigen" Type="varchar" MaxLength="200" />
+    <Property Name="CiudadActual" Type="varchar" MaxLength="200" />
+    <Property Name="Retraso" Type="varchar" MaxLength="2" />
+    <Property Name="SemestresAtrasados" Type="int" />
+    <Property Name="Dificultades" Type="bit" />
+    <Property Name="ProblemasEcon" Type="bit" />
+    <Property Name="ProblemasSalud" Type="bit" />
+    <Property Name="ProblemasSaludMen" Type="bit" />
+    <Property Name="ProblemasFamil" Type="bit" />
+    <Property Name="CalamidadDomes" Type="bit" />
+    <Property Name="Estudio" Type="int" />
+    <Property Name="Deporte" Type="int" />
+    <Property Name="Culturales" Type="int" />
+    <Property Name="Entretenimiento" Type="int" />
+    <Property Name="Trabajo" Type="int" />
+    <Property Name="Religiosas" Type="int" />
+    <Property Name="Otras" Type="int" />
+    <Property Name="CondicionMedica" Type="varchar" MaxLength="2" />
+    <Property Name="CondicionMedicaDet" Type="varchar" MaxLength="500" />
+    <Property Name="MadreEnfMen" Type="bit" />
+    <Property Name="PadreEnfMen" Type="bit" />
+    <Property Name="HermanoEnfMen" Type="bit" />
+    <Property Name="ParejaEnfMen" Type="bit" />
+    <Property Name="AbueloEnfMen" Type="bit" />
+    <Property Name="PrimoEnfMen" Type="bit" />
+    <Property Name="SobrinoEnfMen" Type="bit" />
+    <Property Name="HijoEnfMen" Type="bit" />
+    <Property Name="TioEnfMen" Type="bit" />
+    <Property Name="MadreDep" Type="bit" />
+    <Property Name="PadreDep" Type="bit" />
+    <Property Name="HermanoDep" Type="bit" />
+    <Property Name="ParejaDep" Type="bit" />
+    <Property Name="AbueloDep" Type="bit" />
+    <Property Name="PrimoDep" Type="bit" />
+    <Property Name="SobrinoDep" Type="bit" />
+    <Property Name="HijoEnfDep" Type="bit" />
+    <Property Name="TioEnfDep" Type="bit" />
+    <Property Name="MadreAns" Type="bit" />
+    <Property Name="PadreAns" Type="bit" />
+    <Property Name="HermanoAns" Type="bit" />
+    <Property Name="ParejaAns" Type="bit" />
+    <Property Name="AbueloAns" Type="bit" />
+    <Property Name="PrimoAns" Type="bit" />
+    <Property Name="SobrinoAns" Type="bit" />
+    <Property Name="HijoEnfAns" Type="bit" />
+    <Property Name="TioEnfAns" Type="bit" />
+    <Property Name="MadreEsq" Type="bit" />
+    <Property Name="PadreEsq" Type="bit" />
+    <Property Name="HermanoEsq" Type="bit" />
+    <Property Name="ParejaEsq" Type="bit" />
+    <Property Name="AbueloEsq" Type="bit" />
+    <Property Name="PrimoEsq" Type="bit" />
+    <Property Name="SobrinoEsq" Type="bit" />
+    <Property Name="HijoEnfEsq" Type="bit" />
+    <Property Name="TioEnfEsq" Type="bit" />
+    <Property Name="MadreLicDrog" Type="bit" />
+    <Property Name="PadreLicDrog" Type="bit" />
+    <Property Name="HermanoLicDrog" Type="bit" />
+    <Property Name="ParejaLicDrog" Type="bit" />
+    <Property Name="AbueloLicDrog" Type="bit" />
+    <Property Name="PrimoLicDrog" Type="bit" />
+    <Property Name="SobrinoLicDrog" Type="bit" />
+    <Property Name="HijoEnfLicDrog" Type="bit" />
+    <Property Name="TioEnfLicDrog" Type="bit" />
+    <Property Name="MadreOtra" Type="bit" />
+    <Property Name="PadreOtra" Type="bit" />
+    <Property Name="HermanoOtra" Type="bit" />
+    <Property Name="ParejaOtra" Type="bit" />
+    <Property Name="AbueloOtra" Type="bit" />
+    <Property Name="PrimoOtra" Type="bit" />
+    <Property Name="SobrinoOtra" Type="bit" />
+    <Property Name="HijoEnfOtra" Type="bit" />
+    <Property Name="TioEnfOtra" Type="bit" />
+    <Property Name="MadreTiempoD" Type="varchar" MaxLength="100" />
+    <Property Name="PadreTiempoD" Type="varchar" MaxLength="100" />
+    <Property Name="HermanoTiempoD" Type="varchar" MaxLength="100" />
+    <Property Name="ParejaTiempoD" Type="varchar" MaxLength="100" />
+    <Property Name="AbueloTiempoD" Type="varchar" MaxLength="100" />
+    <Property Name="PrimoTiempoD" Type="varchar" MaxLength="100" />
+    <Property Name="SobrinoTiempoD" Type="varchar" MaxLength="100" />
+    <Property Name="HijoEnfTiempoD" Type="varchar" MaxLength="100" />
+    <Property Name="TioEnfTiempoD" Type="varchar" MaxLength="100" />
+    <Property Name="MadreTrat" Type="bit" />
+    <Property Name="PadreTrat" Type="bit" />
+    <Property Name="HermanoTrat" Type="bit" />
+    <Property Name="ParejaTrat" Type="bit" />
+    <Property Name="AbueloTrat" Type="bit" />
+    <Property Name="PrimoTrat" Type="bit" />
+    <Property Name="SobrinoTrat" Type="bit" />
+    <Property Name="HijoTrat" Type="bit" />
+    <Property Name="TioEnfTrat" Type="bit" />
+    <Property Name="Alcohol" Type="varchar" MaxLength="50" />
+    <Property Name="Nicotina" Type="varchar" MaxLength="50" />
+    <Property Name="Cannabis" Type="varchar" MaxLength="50" />
+    <Property Name="Cocaina" Type="varchar" MaxLength="50" />
+    <Property Name="Sedantes" Type="varchar" MaxLength="50" />
+    <Property Name="Opiaceos" Type="varchar" MaxLength="50" />
+    <Property Name="Otros" Type="varchar" MaxLength="50" />
+    <Property Name="LoUsa" Type="varchar" MaxLength="50" />
+    <Property Name="SmarthPhone" Type="bit" />
+    <Property Name="Tablet" Type="bit" />
+    <Property Name="ComputadorFamiliar" Type="bit" />
+    <Property Name="ComputadorPropio" Type="bit" />
+    <Property Name="PortatilFamiliar" Type="bit" />
+    <Property Name="PortatilPropio" Type="bit" />
+    <Property Name="TV" Type="bit" />
+    <Property Name="Consola" Type="bit" />
+    <Property Name="SalaHogar" Type="bit" />
+    <Property Name="Habitacion" Type="bit" />
+    <Property Name="Universidad" Type="bit" />
+    <Property Name="TrabajoI" Type="bit" />
+    <Property Name="CasaAmigo" Type="bit" />
+    <Property Name="CasaFamiliar" Type="bit" />
+    <Property Name="OtrosPublicos" Type="bit" />
+    <Property Name="OtraVia" Type="bit" />
+    <Property Name="InternetCasa" Type="bit" />
+    <Property Name="InternetMobil" Type="bit" />
+    <Property Name="InternetTrabajo" Type="bit" />
+    <Property Name="InternetUniversidad" Type="bit" />
+    <Property Name="InternetPublico" Type="bit" />
+    <Property Name="fechaDiligen" Type="datetime" />
+  </EntityType>
+  <EntityContainer Name="digisaludModelStoreContainer">
+    <EntitySet Name="encuesta" EntityType="Self.encuesta" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

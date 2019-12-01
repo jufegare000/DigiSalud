@@ -1,0 +1,442 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="digisaludModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="encuesta">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FormatoEnPapel" Type="varchar" MaxLength="2" />
+          <Property Name="PartiCipa" Type="varchar" MaxLength="2" />
+          <Property Name="Edad" Type="int" />
+          <Property Name="Sexo" Type="varchar" MaxLength="10" />
+          <Property Name="CiudadOrigen" Type="varchar" MaxLength="200" />
+          <Property Name="CiudadActual" Type="varchar" MaxLength="200" />
+          <Property Name="Retraso" Type="varchar" MaxLength="2" />
+          <Property Name="SemestresAtrasados" Type="int" />
+          <Property Name="Dificultades" Type="bit" />
+          <Property Name="ProblemasEcon" Type="bit" />
+          <Property Name="ProblemasSalud" Type="bit" />
+          <Property Name="ProblemasSaludMen" Type="bit" />
+          <Property Name="ProblemasFamil" Type="bit" />
+          <Property Name="CalamidadDomes" Type="bit" />
+          <Property Name="Estudio" Type="int" />
+          <Property Name="Deporte" Type="int" />
+          <Property Name="Culturales" Type="int" />
+          <Property Name="Entretenimiento" Type="int" />
+          <Property Name="Trabajo" Type="int" />
+          <Property Name="Religiosas" Type="int" />
+          <Property Name="Otras" Type="int" />
+          <Property Name="CondicionMedica" Type="varchar" MaxLength="2" />
+          <Property Name="CondicionMedicaDet" Type="varchar" MaxLength="500" />
+          <Property Name="MadreEnfMen" Type="bit" />
+          <Property Name="PadreEnfMen" Type="bit" />
+          <Property Name="HermanoEnfMen" Type="bit" />
+          <Property Name="ParejaEnfMen" Type="bit" />
+          <Property Name="AbueloEnfMen" Type="bit" />
+          <Property Name="PrimoEnfMen" Type="bit" />
+          <Property Name="SobrinoEnfMen" Type="bit" />
+          <Property Name="HijoEnfMen" Type="bit" />
+          <Property Name="TioEnfMen" Type="bit" />
+          <Property Name="MadreDep" Type="bit" />
+          <Property Name="PadreDep" Type="bit" />
+          <Property Name="HermanoDep" Type="bit" />
+          <Property Name="ParejaDep" Type="bit" />
+          <Property Name="AbueloDep" Type="bit" />
+          <Property Name="PrimoDep" Type="bit" />
+          <Property Name="SobrinoDep" Type="bit" />
+          <Property Name="HijoEnfDep" Type="bit" />
+          <Property Name="TioEnfDep" Type="bit" />
+          <Property Name="MadreAns" Type="bit" />
+          <Property Name="PadreAns" Type="bit" />
+          <Property Name="HermanoAns" Type="bit" />
+          <Property Name="ParejaAns" Type="bit" />
+          <Property Name="AbueloAns" Type="bit" />
+          <Property Name="PrimoAns" Type="bit" />
+          <Property Name="SobrinoAns" Type="bit" />
+          <Property Name="HijoEnfAns" Type="bit" />
+          <Property Name="TioEnfAns" Type="bit" />
+          <Property Name="MadreEsq" Type="bit" />
+          <Property Name="PadreEsq" Type="bit" />
+          <Property Name="HermanoEsq" Type="bit" />
+          <Property Name="ParejaEsq" Type="bit" />
+          <Property Name="AbueloEsq" Type="bit" />
+          <Property Name="PrimoEsq" Type="bit" />
+          <Property Name="SobrinoEsq" Type="bit" />
+          <Property Name="HijoEnfEsq" Type="bit" />
+          <Property Name="TioEnfEsq" Type="bit" />
+          <Property Name="MadreLicDrog" Type="bit" />
+          <Property Name="PadreLicDrog" Type="bit" />
+          <Property Name="HermanoLicDrog" Type="bit" />
+          <Property Name="ParejaLicDrog" Type="bit" />
+          <Property Name="AbueloLicDrog" Type="bit" />
+          <Property Name="PrimoLicDrog" Type="bit" />
+          <Property Name="SobrinoLicDrog" Type="bit" />
+          <Property Name="HijoEnfLicDrog" Type="bit" />
+          <Property Name="TioEnfLicDrog" Type="bit" />
+          <Property Name="MadreOtra" Type="bit" />
+          <Property Name="PadreOtra" Type="bit" />
+          <Property Name="HermanoOtra" Type="bit" />
+          <Property Name="ParejaOtra" Type="bit" />
+          <Property Name="AbueloOtra" Type="bit" />
+          <Property Name="PrimoOtra" Type="bit" />
+          <Property Name="SobrinoOtra" Type="bit" />
+          <Property Name="HijoEnfOtra" Type="bit" />
+          <Property Name="TioEnfOtra" Type="bit" />
+          <Property Name="MadreTiempoD" Type="varchar" MaxLength="100" />
+          <Property Name="PadreTiempoD" Type="varchar" MaxLength="100" />
+          <Property Name="HermanoTiempoD" Type="varchar" MaxLength="100" />
+          <Property Name="ParejaTiempoD" Type="varchar" MaxLength="100" />
+          <Property Name="AbueloTiempoD" Type="varchar" MaxLength="100" />
+          <Property Name="PrimoTiempoD" Type="varchar" MaxLength="100" />
+          <Property Name="SobrinoTiempoD" Type="varchar" MaxLength="100" />
+          <Property Name="HijoEnfTiempoD" Type="varchar" MaxLength="100" />
+          <Property Name="TioEnfTiempoD" Type="varchar" MaxLength="100" />
+          <Property Name="MadreTrat" Type="bit" />
+          <Property Name="PadreTrat" Type="bit" />
+          <Property Name="HermanoTrat" Type="bit" />
+          <Property Name="ParejaTrat" Type="bit" />
+          <Property Name="AbueloTrat" Type="bit" />
+          <Property Name="PrimoTrat" Type="bit" />
+          <Property Name="SobrinoTrat" Type="bit" />
+          <Property Name="HijoTrat" Type="bit" />
+          <Property Name="TioEnfTrat" Type="bit" />
+          <Property Name="Alcohol" Type="varchar" MaxLength="50" />
+          <Property Name="Nicotina" Type="varchar" MaxLength="50" />
+          <Property Name="Cannabis" Type="varchar" MaxLength="50" />
+          <Property Name="Cocaina" Type="varchar" MaxLength="50" />
+          <Property Name="Sedantes" Type="varchar" MaxLength="50" />
+          <Property Name="Opiaceos" Type="varchar" MaxLength="50" />
+          <Property Name="Otros" Type="varchar" MaxLength="50" />
+          <Property Name="LoUsa" Type="varchar" MaxLength="50" />
+          <Property Name="SmarthPhone" Type="bit" />
+          <Property Name="Tablet" Type="bit" />
+          <Property Name="ComputadorFamiliar" Type="bit" />
+          <Property Name="ComputadorPropio" Type="bit" />
+          <Property Name="PortatilFamiliar" Type="bit" />
+          <Property Name="PortatilPropio" Type="bit" />
+          <Property Name="TV" Type="bit" />
+          <Property Name="Consola" Type="bit" />
+          <Property Name="SalaHogar" Type="bit" />
+          <Property Name="Habitacion" Type="bit" />
+          <Property Name="Universidad" Type="bit" />
+          <Property Name="TrabajoI" Type="bit" />
+          <Property Name="CasaAmigo" Type="bit" />
+          <Property Name="CasaFamiliar" Type="bit" />
+          <Property Name="OtrosPublicos" Type="bit" />
+          <Property Name="OtraVia" Type="bit" />
+          <Property Name="InternetCasa" Type="bit" />
+          <Property Name="InternetMobil" Type="bit" />
+          <Property Name="InternetTrabajo" Type="bit" />
+          <Property Name="InternetUniversidad" Type="bit" />
+          <Property Name="InternetPublico" Type="bit" />
+          <Property Name="fechaDiligen" Type="datetime" />
+        </EntityType>
+        <EntityContainer Name="digisaludModelStoreContainer">
+          <EntitySet Name="encuesta" EntityType="Self.encuesta" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="digisaludModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="encuesta">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FormatoEnPapel" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="PartiCipa" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="Edad" Type="Int32" />
+          <Property Name="Sexo" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="CiudadOrigen" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="CiudadActual" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Retraso" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="SemestresAtrasados" Type="Int32" />
+          <Property Name="Dificultades" Type="Boolean" />
+          <Property Name="ProblemasEcon" Type="Boolean" />
+          <Property Name="ProblemasSalud" Type="Boolean" />
+          <Property Name="ProblemasSaludMen" Type="Boolean" />
+          <Property Name="ProblemasFamil" Type="Boolean" />
+          <Property Name="CalamidadDomes" Type="Boolean" />
+          <Property Name="Estudio" Type="Int32" />
+          <Property Name="Deporte" Type="Int32" />
+          <Property Name="Culturales" Type="Int32" />
+          <Property Name="Entretenimiento" Type="Int32" />
+          <Property Name="Trabajo" Type="Int32" />
+          <Property Name="Religiosas" Type="Int32" />
+          <Property Name="Otras" Type="Int32" />
+          <Property Name="CondicionMedica" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="CondicionMedicaDet" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="MadreEnfMen" Type="Boolean" />
+          <Property Name="PadreEnfMen" Type="Boolean" />
+          <Property Name="HermanoEnfMen" Type="Boolean" />
+          <Property Name="ParejaEnfMen" Type="Boolean" />
+          <Property Name="AbueloEnfMen" Type="Boolean" />
+          <Property Name="PrimoEnfMen" Type="Boolean" />
+          <Property Name="SobrinoEnfMen" Type="Boolean" />
+          <Property Name="HijoEnfMen" Type="Boolean" />
+          <Property Name="TioEnfMen" Type="Boolean" />
+          <Property Name="MadreDep" Type="Boolean" />
+          <Property Name="PadreDep" Type="Boolean" />
+          <Property Name="HermanoDep" Type="Boolean" />
+          <Property Name="ParejaDep" Type="Boolean" />
+          <Property Name="AbueloDep" Type="Boolean" />
+          <Property Name="PrimoDep" Type="Boolean" />
+          <Property Name="SobrinoDep" Type="Boolean" />
+          <Property Name="HijoEnfDep" Type="Boolean" />
+          <Property Name="TioEnfDep" Type="Boolean" />
+          <Property Name="MadreAns" Type="Boolean" />
+          <Property Name="PadreAns" Type="Boolean" />
+          <Property Name="HermanoAns" Type="Boolean" />
+          <Property Name="ParejaAns" Type="Boolean" />
+          <Property Name="AbueloAns" Type="Boolean" />
+          <Property Name="PrimoAns" Type="Boolean" />
+          <Property Name="SobrinoAns" Type="Boolean" />
+          <Property Name="HijoEnfAns" Type="Boolean" />
+          <Property Name="TioEnfAns" Type="Boolean" />
+          <Property Name="MadreEsq" Type="Boolean" />
+          <Property Name="PadreEsq" Type="Boolean" />
+          <Property Name="HermanoEsq" Type="Boolean" />
+          <Property Name="ParejaEsq" Type="Boolean" />
+          <Property Name="AbueloEsq" Type="Boolean" />
+          <Property Name="PrimoEsq" Type="Boolean" />
+          <Property Name="SobrinoEsq" Type="Boolean" />
+          <Property Name="HijoEnfEsq" Type="Boolean" />
+          <Property Name="TioEnfEsq" Type="Boolean" />
+          <Property Name="MadreLicDrog" Type="Boolean" />
+          <Property Name="PadreLicDrog" Type="Boolean" />
+          <Property Name="HermanoLicDrog" Type="Boolean" />
+          <Property Name="ParejaLicDrog" Type="Boolean" />
+          <Property Name="AbueloLicDrog" Type="Boolean" />
+          <Property Name="PrimoLicDrog" Type="Boolean" />
+          <Property Name="SobrinoLicDrog" Type="Boolean" />
+          <Property Name="HijoEnfLicDrog" Type="Boolean" />
+          <Property Name="TioEnfLicDrog" Type="Boolean" />
+          <Property Name="MadreOtra" Type="Boolean" />
+          <Property Name="PadreOtra" Type="Boolean" />
+          <Property Name="HermanoOtra" Type="Boolean" />
+          <Property Name="ParejaOtra" Type="Boolean" />
+          <Property Name="AbueloOtra" Type="Boolean" />
+          <Property Name="PrimoOtra" Type="Boolean" />
+          <Property Name="SobrinoOtra" Type="Boolean" />
+          <Property Name="HijoEnfOtra" Type="Boolean" />
+          <Property Name="TioEnfOtra" Type="Boolean" />
+          <Property Name="MadreTiempoD" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="PadreTiempoD" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="HermanoTiempoD" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ParejaTiempoD" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="AbueloTiempoD" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="PrimoTiempoD" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="SobrinoTiempoD" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="HijoEnfTiempoD" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="TioEnfTiempoD" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="MadreTrat" Type="Boolean" />
+          <Property Name="PadreTrat" Type="Boolean" />
+          <Property Name="HermanoTrat" Type="Boolean" />
+          <Property Name="ParejaTrat" Type="Boolean" />
+          <Property Name="AbueloTrat" Type="Boolean" />
+          <Property Name="PrimoTrat" Type="Boolean" />
+          <Property Name="SobrinoTrat" Type="Boolean" />
+          <Property Name="HijoTrat" Type="Boolean" />
+          <Property Name="TioEnfTrat" Type="Boolean" />
+          <Property Name="Alcohol" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Nicotina" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Cannabis" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Cocaina" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Sedantes" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Opiaceos" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Otros" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LoUsa" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SmarthPhone" Type="Boolean" />
+          <Property Name="Tablet" Type="Boolean" />
+          <Property Name="ComputadorFamiliar" Type="Boolean" />
+          <Property Name="ComputadorPropio" Type="Boolean" />
+          <Property Name="PortatilFamiliar" Type="Boolean" />
+          <Property Name="PortatilPropio" Type="Boolean" />
+          <Property Name="TV" Type="Boolean" />
+          <Property Name="Consola" Type="Boolean" />
+          <Property Name="SalaHogar" Type="Boolean" />
+          <Property Name="Habitacion" Type="Boolean" />
+          <Property Name="Universidad" Type="Boolean" />
+          <Property Name="TrabajoI" Type="Boolean" />
+          <Property Name="CasaAmigo" Type="Boolean" />
+          <Property Name="CasaFamiliar" Type="Boolean" />
+          <Property Name="OtrosPublicos" Type="Boolean" />
+          <Property Name="OtraVia" Type="Boolean" />
+          <Property Name="InternetCasa" Type="Boolean" />
+          <Property Name="InternetMobil" Type="Boolean" />
+          <Property Name="InternetTrabajo" Type="Boolean" />
+          <Property Name="InternetUniversidad" Type="Boolean" />
+          <Property Name="InternetPublico" Type="Boolean" />
+          <Property Name="fechaDiligen" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityContainer Name="digisaludEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="encuesta" EntityType="Self.encuesta" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="digisaludModelStoreContainer" CdmEntityContainer="digisaludEntities">
+          <EntitySetMapping Name="encuesta">
+            <EntityTypeMapping TypeName="digisaludModel.encuesta">
+              <MappingFragment StoreEntitySet="encuesta">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="FormatoEnPapel" ColumnName="FormatoEnPapel" />
+                <ScalarProperty Name="PartiCipa" ColumnName="PartiCipa" />
+                <ScalarProperty Name="Edad" ColumnName="Edad" />
+                <ScalarProperty Name="Sexo" ColumnName="Sexo" />
+                <ScalarProperty Name="CiudadOrigen" ColumnName="CiudadOrigen" />
+                <ScalarProperty Name="CiudadActual" ColumnName="CiudadActual" />
+                <ScalarProperty Name="Retraso" ColumnName="Retraso" />
+                <ScalarProperty Name="SemestresAtrasados" ColumnName="SemestresAtrasados" />
+                <ScalarProperty Name="Dificultades" ColumnName="Dificultades" />
+                <ScalarProperty Name="ProblemasEcon" ColumnName="ProblemasEcon" />
+                <ScalarProperty Name="ProblemasSalud" ColumnName="ProblemasSalud" />
+                <ScalarProperty Name="ProblemasSaludMen" ColumnName="ProblemasSaludMen" />
+                <ScalarProperty Name="ProblemasFamil" ColumnName="ProblemasFamil" />
+                <ScalarProperty Name="CalamidadDomes" ColumnName="CalamidadDomes" />
+                <ScalarProperty Name="Estudio" ColumnName="Estudio" />
+                <ScalarProperty Name="Deporte" ColumnName="Deporte" />
+                <ScalarProperty Name="Culturales" ColumnName="Culturales" />
+                <ScalarProperty Name="Entretenimiento" ColumnName="Entretenimiento" />
+                <ScalarProperty Name="Trabajo" ColumnName="Trabajo" />
+                <ScalarProperty Name="Religiosas" ColumnName="Religiosas" />
+                <ScalarProperty Name="Otras" ColumnName="Otras" />
+                <ScalarProperty Name="CondicionMedica" ColumnName="CondicionMedica" />
+                <ScalarProperty Name="CondicionMedicaDet" ColumnName="CondicionMedicaDet" />
+                <ScalarProperty Name="MadreEnfMen" ColumnName="MadreEnfMen" />
+                <ScalarProperty Name="PadreEnfMen" ColumnName="PadreEnfMen" />
+                <ScalarProperty Name="HermanoEnfMen" ColumnName="HermanoEnfMen" />
+                <ScalarProperty Name="ParejaEnfMen" ColumnName="ParejaEnfMen" />
+                <ScalarProperty Name="AbueloEnfMen" ColumnName="AbueloEnfMen" />
+                <ScalarProperty Name="PrimoEnfMen" ColumnName="PrimoEnfMen" />
+                <ScalarProperty Name="SobrinoEnfMen" ColumnName="SobrinoEnfMen" />
+                <ScalarProperty Name="HijoEnfMen" ColumnName="HijoEnfMen" />
+                <ScalarProperty Name="TioEnfMen" ColumnName="TioEnfMen" />
+                <ScalarProperty Name="MadreDep" ColumnName="MadreDep" />
+                <ScalarProperty Name="PadreDep" ColumnName="PadreDep" />
+                <ScalarProperty Name="HermanoDep" ColumnName="HermanoDep" />
+                <ScalarProperty Name="ParejaDep" ColumnName="ParejaDep" />
+                <ScalarProperty Name="AbueloDep" ColumnName="AbueloDep" />
+                <ScalarProperty Name="PrimoDep" ColumnName="PrimoDep" />
+                <ScalarProperty Name="SobrinoDep" ColumnName="SobrinoDep" />
+                <ScalarProperty Name="HijoEnfDep" ColumnName="HijoEnfDep" />
+                <ScalarProperty Name="TioEnfDep" ColumnName="TioEnfDep" />
+                <ScalarProperty Name="MadreAns" ColumnName="MadreAns" />
+                <ScalarProperty Name="PadreAns" ColumnName="PadreAns" />
+                <ScalarProperty Name="HermanoAns" ColumnName="HermanoAns" />
+                <ScalarProperty Name="ParejaAns" ColumnName="ParejaAns" />
+                <ScalarProperty Name="AbueloAns" ColumnName="AbueloAns" />
+                <ScalarProperty Name="PrimoAns" ColumnName="PrimoAns" />
+                <ScalarProperty Name="SobrinoAns" ColumnName="SobrinoAns" />
+                <ScalarProperty Name="HijoEnfAns" ColumnName="HijoEnfAns" />
+                <ScalarProperty Name="TioEnfAns" ColumnName="TioEnfAns" />
+                <ScalarProperty Name="MadreEsq" ColumnName="MadreEsq" />
+                <ScalarProperty Name="PadreEsq" ColumnName="PadreEsq" />
+                <ScalarProperty Name="HermanoEsq" ColumnName="HermanoEsq" />
+                <ScalarProperty Name="ParejaEsq" ColumnName="ParejaEsq" />
+                <ScalarProperty Name="AbueloEsq" ColumnName="AbueloEsq" />
+                <ScalarProperty Name="PrimoEsq" ColumnName="PrimoEsq" />
+                <ScalarProperty Name="SobrinoEsq" ColumnName="SobrinoEsq" />
+                <ScalarProperty Name="HijoEnfEsq" ColumnName="HijoEnfEsq" />
+                <ScalarProperty Name="TioEnfEsq" ColumnName="TioEnfEsq" />
+                <ScalarProperty Name="MadreLicDrog" ColumnName="MadreLicDrog" />
+                <ScalarProperty Name="PadreLicDrog" ColumnName="PadreLicDrog" />
+                <ScalarProperty Name="HermanoLicDrog" ColumnName="HermanoLicDrog" />
+                <ScalarProperty Name="ParejaLicDrog" ColumnName="ParejaLicDrog" />
+                <ScalarProperty Name="AbueloLicDrog" ColumnName="AbueloLicDrog" />
+                <ScalarProperty Name="PrimoLicDrog" ColumnName="PrimoLicDrog" />
+                <ScalarProperty Name="SobrinoLicDrog" ColumnName="SobrinoLicDrog" />
+                <ScalarProperty Name="HijoEnfLicDrog" ColumnName="HijoEnfLicDrog" />
+                <ScalarProperty Name="TioEnfLicDrog" ColumnName="TioEnfLicDrog" />
+                <ScalarProperty Name="MadreOtra" ColumnName="MadreOtra" />
+                <ScalarProperty Name="PadreOtra" ColumnName="PadreOtra" />
+                <ScalarProperty Name="HermanoOtra" ColumnName="HermanoOtra" />
+                <ScalarProperty Name="ParejaOtra" ColumnName="ParejaOtra" />
+                <ScalarProperty Name="AbueloOtra" ColumnName="AbueloOtra" />
+                <ScalarProperty Name="PrimoOtra" ColumnName="PrimoOtra" />
+                <ScalarProperty Name="SobrinoOtra" ColumnName="SobrinoOtra" />
+                <ScalarProperty Name="HijoEnfOtra" ColumnName="HijoEnfOtra" />
+                <ScalarProperty Name="TioEnfOtra" ColumnName="TioEnfOtra" />
+                <ScalarProperty Name="MadreTiempoD" ColumnName="MadreTiempoD" />
+                <ScalarProperty Name="PadreTiempoD" ColumnName="PadreTiempoD" />
+                <ScalarProperty Name="HermanoTiempoD" ColumnName="HermanoTiempoD" />
+                <ScalarProperty Name="ParejaTiempoD" ColumnName="ParejaTiempoD" />
+                <ScalarProperty Name="AbueloTiempoD" ColumnName="AbueloTiempoD" />
+                <ScalarProperty Name="PrimoTiempoD" ColumnName="PrimoTiempoD" />
+                <ScalarProperty Name="SobrinoTiempoD" ColumnName="SobrinoTiempoD" />
+                <ScalarProperty Name="HijoEnfTiempoD" ColumnName="HijoEnfTiempoD" />
+                <ScalarProperty Name="TioEnfTiempoD" ColumnName="TioEnfTiempoD" />
+                <ScalarProperty Name="MadreTrat" ColumnName="MadreTrat" />
+                <ScalarProperty Name="PadreTrat" ColumnName="PadreTrat" />
+                <ScalarProperty Name="HermanoTrat" ColumnName="HermanoTrat" />
+                <ScalarProperty Name="ParejaTrat" ColumnName="ParejaTrat" />
+                <ScalarProperty Name="AbueloTrat" ColumnName="AbueloTrat" />
+                <ScalarProperty Name="PrimoTrat" ColumnName="PrimoTrat" />
+                <ScalarProperty Name="SobrinoTrat" ColumnName="SobrinoTrat" />
+                <ScalarProperty Name="HijoTrat" ColumnName="HijoTrat" />
+                <ScalarProperty Name="TioEnfTrat" ColumnName="TioEnfTrat" />
+                <ScalarProperty Name="Alcohol" ColumnName="Alcohol" />
+                <ScalarProperty Name="Nicotina" ColumnName="Nicotina" />
+                <ScalarProperty Name="Cannabis" ColumnName="Cannabis" />
+                <ScalarProperty Name="Cocaina" ColumnName="Cocaina" />
+                <ScalarProperty Name="Sedantes" ColumnName="Sedantes" />
+                <ScalarProperty Name="Opiaceos" ColumnName="Opiaceos" />
+                <ScalarProperty Name="Otros" ColumnName="Otros" />
+                <ScalarProperty Name="LoUsa" ColumnName="LoUsa" />
+                <ScalarProperty Name="SmarthPhone" ColumnName="SmarthPhone" />
+                <ScalarProperty Name="Tablet" ColumnName="Tablet" />
+                <ScalarProperty Name="ComputadorFamiliar" ColumnName="ComputadorFamiliar" />
+                <ScalarProperty Name="ComputadorPropio" ColumnName="ComputadorPropio" />
+                <ScalarProperty Name="PortatilFamiliar" ColumnName="PortatilFamiliar" />
+                <ScalarProperty Name="PortatilPropio" ColumnName="PortatilPropio" />
+                <ScalarProperty Name="TV" ColumnName="TV" />
+                <ScalarProperty Name="Consola" ColumnName="Consola" />
+                <ScalarProperty Name="SalaHogar" ColumnName="SalaHogar" />
+                <ScalarProperty Name="Habitacion" ColumnName="Habitacion" />
+                <ScalarProperty Name="Universidad" ColumnName="Universidad" />
+                <ScalarProperty Name="TrabajoI" ColumnName="TrabajoI" />
+                <ScalarProperty Name="CasaAmigo" ColumnName="CasaAmigo" />
+                <ScalarProperty Name="CasaFamiliar" ColumnName="CasaFamiliar" />
+                <ScalarProperty Name="OtrosPublicos" ColumnName="OtrosPublicos" />
+                <ScalarProperty Name="OtraVia" ColumnName="OtraVia" />
+                <ScalarProperty Name="InternetCasa" ColumnName="InternetCasa" />
+                <ScalarProperty Name="InternetMobil" ColumnName="InternetMobil" />
+                <ScalarProperty Name="InternetTrabajo" ColumnName="InternetTrabajo" />
+                <ScalarProperty Name="InternetUniversidad" ColumnName="InternetUniversidad" />
+                <ScalarProperty Name="InternetPublico" ColumnName="InternetPublico" />
+                <ScalarProperty Name="fechaDiligen" ColumnName="fechaDiligen" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
